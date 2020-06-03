@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <nav>
-        <ul>
+        <ul >
           <li>
             <Link to="/">A Better Settlement</Link>
           </li>
@@ -38,7 +38,7 @@ function App() {
 
 
 function Home() {
-  return <h2>Home</h2>;
+  return <h2 className="home">Home</h2>;
 }
 
 

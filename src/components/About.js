@@ -41,7 +41,7 @@ export default function AboutPage(){
     return (
         <div className="flex-grid">
             <h1>About!</h1>
-            <div class="col">
+            <div className="col">
                 <p>Rob Birch is a software engineer who was involved in a rear end collusion and his car was totaled in it.
                      He negotiated a better settlement with the insurance companies using data similarly provided on this website. 
                      He believes every victim in a car accident should get the treatment and compensation to move on with life. 
