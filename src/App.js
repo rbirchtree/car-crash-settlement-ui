@@ -2,6 +2,9 @@ import React from 'react';
 
 import './App.css';
 import About from './components/About';
+import Calculator from './components/Calculator';
+import Lost from './components/Lost';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,41 +12,36 @@ import {
   Link
 } from "react-router-dom";
 
-function App() {
-  return (
-    <Router>
-      <nav>
-        <ul >
-          <li>
-            <Link to="/">A Better Settlement</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route component={Users} />
-        </Switch>     
+class App extends React.Component {
+  render(){
+    return(
+    <Router>        
+        <nav>
+          <ul >
+            <li>
+              <Link to="/">A Better Settlement</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
+          <div className="container">
+            <Switch>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/">
+                  <Calculator />
+                </Route>
+                <Route component={Lost} />
+            </Switch>
+          </div>     
+        <div className="footer">Helping attorneys & Clients Negoiate a Better Settlement Since 2020</div>
     </Router>
-  );
+    )
+  }
 }
 
-
-function Home() {
-  return <h2 className="home">Home</h2>;
-}
-
-
-function Users() {
-  return <h2>Users</h2>;
-}
 
 export default App;
