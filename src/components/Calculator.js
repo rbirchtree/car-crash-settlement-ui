@@ -3,6 +3,7 @@ import {Formik, Field,Form} from 'formik';
 import DatePicker from "react-datepicker";
 import { numberFormat } from "./numCurrency";
 import "react-datepicker/dist/react-datepicker.css";
+import Helmet from "react-helmet";
 
 
 class Calculator extends React.Component {
@@ -12,6 +13,14 @@ class Calculator extends React.Component {
       
         return (
             <div className="container">
+              <Helmet>
+                  <title>A Better Settlement</title>
+                  <meta name="description" content="settlement calculator personal injury lawyer whiplash" />
+                  <meta property="og:locale" content="en_US" />
+                  <meta property="og:type" content="website" />
+                  <meta property="og:url" content="https://abettersettlement.com" />
+                  <meta property="og:description" content="settlement calculator personal injury lawyer whiplash" />
+              </Helmet>
                 <Formik
                     initialValues={{
                       email: 'john.doe@gmail.com',
