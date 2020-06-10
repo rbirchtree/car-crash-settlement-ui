@@ -1,149 +1,157 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import DatePicker from "./DatePicker";
+import {Formik, Field,Form} from 'formik';
+import DatePicker from "react-datepicker";
+import { numberFormat } from "./numCurrency";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Calculator = () => {
 
-  const formik = useFormik({
-    initialValues: {
-      email: 'john.doe@gmail.com',
-      dateOfAccident:'05/1/2020',
-      dateRehabIsFinished: '07/1/2020',
-      firstName:'John',
-      lastName:'Doe',
-      numOfVisitsToRehab:'20',
-      timeAtRehabInHours:'1',
-      timeDrivingtoRehabPerAVisitRndTrip:'1',
-      timeWithAtty:'1',
-      timeAtAccident:'2',
-      timeRentingACar:'1',
-      timeDoingRehabPerADay:'1',
-      hourlyWageForOccupation:'25',
-      age:'42'
-    },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null,2));
-    },
-  });
-  return (
-    <form onSubmit={formik.handleSubmit}>
-      <p>{formik.values.timeAtAccident * formik.values.hourlyWageForOccupation}</p>
-      <ul>
-          <li>
-            <label htmlFor="firstName">First Name</label>
-            <input
-              id="firstName"
-              name="firstName"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.firstName}
-            />
-          </li>
-          <li>
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              id="lastName"
-              name="lastName"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.lastName}
-            />
-          </li>
-          <li>
-            <label htmlFor="email">Email Address</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              />
-            </li>
-            <li>
-              <label htmlFor="numOfVisitsToRehab">Number of Visits to Rehab</label>
-              <input
-                id="numOfVisitsToRehab"
-                name="numOfVisitsToRehab"
-                type="numOfVisitsToRehab"
-                onChange={formik.handleChange}
-                value={formik.values.numOfVisitsToRehab}
-                />
-              </li>
-              <li>
-              <label htmlFor="timeAtRehabInHours">Time at Rehab in Hours per a visit</label>
-              <input
-                id="timeAtRehabInHours"
-                name="timeAtRehabInHours"
-                type="timeAtRehabInHours"
-                onChange={formik.handleChange}
-                value={formik.values.timeAtRehabInHours}
-              />
-              </li>
-              <li>
-                <label htmlFor="timeAtRehabInHours">Time Driving to Rehab per a Visit Roundtrip</label>
-                <input
-                  id="timeDrivingtoRehabPerAVisitRndTrip"
-                  name="timeDrivingtoRehabPerAVisitRndTrip"
-                  type="timeDrivingtoRehabPerAVisitRndTrip"
-                  onChange={formik.handleChange}
-                  value={formik.values.timeDrivingtoRehabPerAVisitRndTrip}
-                />
-              </li>
-              <li>
-                <label htmlFor="timeWithAtty">Time with Attorney</label>
-                <input
-                  id="timeWithAtty"
-                  name="timeWithAtty"
-                  type="timeWithAtty"
-                  onChange={formik.handleChange}
-                  value={formik.values.timeWithAtty}
-                />
-              </li>
-              <li>
-                <label htmlFor="timeRentingACar">Time Renting a Car</label>
-                <input
-                  id="timeRentingACar"
-                  name="timeRentingACar"
-                  type="timeRentingACar"
-                  onChange={formik.handleChange}
-                  value={formik.values.timeRentingACar}
-                />
-              </li>
-              <li>
-                <label htmlFor="timeDoingRehabPerADay">Time Doing Rehab Exercises at Home Per a Day in Hours</label>
-                <input
-                  id="timeDoingRehabPerADay"
-                  name="timeDoingRehabPerADay"
-                  type="ttimeDoingRehabPerADay"
-                  onChange={formik.handleChange}
-                  value={formik.values.timeDoingRehabPerADay}
-                />
-              </li>
-              <li>
-                <label htmlFor="hourlyWageForOccupation">Hourly Wage for Occupation</label>
-                <input
-                  id="hourlyWageForOccupation"
-                  name="hourlyWageForOccupation"
-                  type="hourlyWageForOccupation"
-                  onChange={formik.handleChange}
-                  value={formik.values.hourlyWageForOccupation}
-                /> 
-              </li>  
-              <li>
-                <label htmlFor="age">Age of Victim</label>
-                <input
-                  id="age"
-                  name="age"
-                  type="age"
-                  onChange={formik.handleChange}
-                  value={formik.values.age}
-                /> 
-              </li>
-          <button type="submit">Submit</button>
-      </ul>
-    </form>
-  );
-};
+class Calculator extends React.Component {
+  
 
-  export default Calculator;
+    render(){
+      
+        return (
+            <div className="container">
+                <Formik
+                    initialValues={{
+                      email: 'john.doe@gmail.com',
+                      firstName:'John',
+                      lastName:'Doe',
+                      dateOfAccident: new Date(),
+                      numOfVisitsToRehab:60,
+                      timeAtRehabInHours:1,
+                      timeDrivingtoRehabPerAVisitRndTrip:1,
+                      timeWithAtty:1,
+                      timeAtAccident:2,
+                      timeRentingACar:1,
+                      timeDoingRehabPerADay:1,
+                      dateRehabIsFinished: new Date(),
+                      hourlyWageForOccupation:40,
+                      age:42
+                    }
+                    }
+                    validate={(props, a) => console.log('a',props, a)}
+                    onSubmit={(values, { setSubmitting }) => {
+                        setTimeout(() => {
+                          alert(JSON.stringify(values, null, 2));
+                          setSubmitting(false);
+                        }, 400);
+                    }}
+                >
+            {({ isSubmitting, values, setFieldValue }) => (
+            
+              <Form>
+                
+                      <div className="form-row">
+                        <div className="form-group col-md-3">
+                        <label htmlFor="email">Email</label>
+                          <Field type="email" name="email" placeholder="email"/>
+                      </div>
+                      <div className="form-group col-md-3">
+                        <label htmlFor="firstName">First Name</label>
+                        <Field type="text" name="firstName" placeholder="John"/>
+                        </div>
+                      <div className="form-group col-md-3">
+                        <label htmlFor="lastName">Last Name</label>
+                        <Field type="lastName" name="lastName" placeholder="Doe"/>
+                      </div>
+                      </div>
+                      <div className="form-row">
+                      <div className="form-group col-md-4">
+                        <label htmlFor="dateOfAccident">Date of Accident</label>
+                          <DatePicker 
+                            selected={values.dateOfAccident}
+                            dateFormat="MMMM d, yyyy"
+                            className="form-control"
+                            name="dateOfAccident"
+                            onChange={date => setFieldValue('dateOfAccident', date)}
+                          />
+                        </div>
+                        <div className="form-group col-md-5">
+                        <label htmlFor="dateRehabIsFinished">Date Rehab is Finished</label>
+                            <DatePicker 
+                              selected={values.dateRehabIsFinished}
+                              dateFormat="MMMM d, yyyy"
+                              className="form-control"
+                              name="startDate"
+                              onChange={date => setFieldValue('dateRehabIsFinished', date)}
+                            />
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-8">
+                          <label htmlFor="numOfVisitsToRehab">Number of Visits to PT</label>
+                          <Field type="text" name="numOfVisitsToRehab" value={values.numOfVisitsToRehab}/>
+                        </div>
+                        
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-8">
+                            <label htmlFor="timeAtRehabInHours">Time at PT in Hours per a Visit</label>
+                            <Field type="text" name="timeAtRehabInHours" value={values.timeAtRehabInHours}/>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                      <div className="form-group col-md-8">
+                        <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Time Driving to PT per a Visit Roundtrip</label>
+                          <Field type="text" name="timeDrivingtoRehabPerAVisitRndTrip" value={values.timeDrivingtoRehabPerAVisitRndTrip}/>
+                          </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-5">
+                          <label htmlFor="timeDoingRehabPerADay">Hours of PT at Home per a Day</label>
+                          <Field type="text" name="timeDoingRehabPerADay" value={values.timeDoingRehabPerADay}/>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-4">
+                          <label htmlFor="timeWithAtty">Time with Attorney</label>
+                          <Field type="text" name="timeWithAtty" value={values.timeWithAtty}/>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-4">
+                          <label htmlFor="timeAtAccident">Time at Accident</label>
+                          <Field type="text" name="timeAtAccident" value={values.timeAtAccident}/>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-4">
+                          <label htmlFor="timeRentingACar">Time Renting a Car</label>
+                          <Field type="text" name="timeRentingACar" value={values.timeRentingACar}/>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-5">
+                          <label htmlFor="hourlyWageForOccupation">Hourly Wage for Occupation</label>
+                          <Field type="text" name="hourlyWageForOccupation" value={values.hourlyWageForOccupation}/>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-5">
+                          <label htmlFor="age">Age of Victim</label>
+                            <Field type="text" name="age" value={values.age}/>
+                        </div>
+                      </div>
+                        <label className="total"><b>Total</b></label>
+                      <div>{ 
+
+                              numberFormat((1+(79-values.age)/79)*(2*values.hourlyWageForOccupation*((Number(values.timeAtAccident) +Number(values.timeRentingACar) + Number(values.timeWithAtty))+
+                               ((((values.dateRehabIsFinished-values.dateOfAccident)/86400000)*Number(values.timeDoingRehabPerADay))+
+                               ((Number(values.timeDrivingtoRehabPerAVisitRndTrip)+Number(values.timeAtRehabInHours))*Number(values.numOfVisitsToRehab))))))
+                          //do a multipler of the average age of death in the us in 2020 * 2 for double entry of lost opportunites
+                          }</div>
+                    
+                    <button type="submit" className="btn btn-lg btn-outline-success mt-4 mb-4" disabled={isSubmitting}>Submit</button>
+                  
+                
+              </Form>
+          )}
+        </Formik>
+    </div>
+
+        )
+    }
+}
+
+export default Calculator;
