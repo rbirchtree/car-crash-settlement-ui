@@ -1,6 +1,7 @@
 import React from 'react';
 import {Formik, Field,Form} from 'formik';
 import DatePicker from "react-datepicker";
+import axios from 'axios';
 import { numberFormat } from "./numCurrency";
 import "react-datepicker/dist/react-datepicker.css";
 import Helmet from "react-helmet";
@@ -10,6 +11,7 @@ class Calculator extends React.Component {
   
 
     render(){
+      
       
         return (
             <div className="container">
@@ -41,10 +43,18 @@ class Calculator extends React.Component {
                     }
                     validate={(props, a) => console.log('a',props, a)}
                     onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                          alert(JSON.stringify(values, null, 2));
+                        //setTimeout(() => {
+                          //axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+                          axios.post(process.env.REACT_APP_URL, {values})
+                            .then(function(response){
+                              console.log(response);
+                            })
+                            .catch(function(error){
+                              console.log(error);
+                            })
+                          // alert(JSON.stringify(values, null, 2));
                           setSubmitting(false);
-                        }, 400);
+                        //}, 400);
                     }}
                 >
             {({ isSubmitting, values, setFieldValue }) => (
@@ -55,7 +65,7 @@ class Calculator extends React.Component {
                         <div className="form-group col-md-3">
                         <label htmlFor="email">Email</label>
                           <Field type="email" name="email" placeholder="email"/>
-                      </div>
+                        </div>
                       <div className="form-group col-md-3">
                         <label htmlFor="firstName">First Name</label>
                         <Field type="text" name="firstName" placeholder="John"/>
@@ -88,57 +98,75 @@ class Calculator extends React.Component {
                         </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-8">
+                        <div className="form-group col-md-3">
                           <label htmlFor="numOfVisitsToRehab">Number of Visits to PT</label>
-                          <Field type="text" name="numOfVisitsToRehab" value={values.numOfVisitsToRehab}/>
                         </div>
+                        <div className="form-group col-md-3">
+                          <Field type="text" name="numOfVisitsToRehab" value={values.numOfVisitsToRehab}/>
+                        </div>  
                         
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-8">
-                            <label htmlFor="timeAtRehabInHours">Time at PT in Hours per a Visit</label>
+                        <div className="form-group col-md-3">
+                          <label htmlFor="timeAtRehabInHours">Time at PT in Hours per a Visit</label>
+                        </div>
+                        <div className="form-group col-md-3">
                             <Field type="text" name="timeAtRehabInHours" value={values.timeAtRehabInHours}/>
                         </div>
                       </div>
                       <div className="form-row">
-                      <div className="form-group col-md-8">
-                        <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Time Driving to PT per a Visit Roundtrip</label>
+                        <div className="form-group col-md-3">
+                          <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Time Driving to PT per a Visit Roundtrip in Hours</label>
+                        </div>
+                        <div className="form-group col-md-3">
                           <Field type="text" name="timeDrivingtoRehabPerAVisitRndTrip" value={values.timeDrivingtoRehabPerAVisitRndTrip}/>
-                          </div>
+                        </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-5">
+                        <div className="form-group col-md-3">
                           <label htmlFor="timeDoingRehabPerADay">Hours of PT at Home per a Day</label>
+                        </div>
+                        <div className="form-group col-md-3">
                           <Field type="text" name="timeDoingRehabPerADay" value={values.timeDoingRehabPerADay}/>
                         </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-4">
-                          <label htmlFor="timeWithAtty">Time with Attorney</label>
+                        <div className="form-group col-md-3">
+                          <label htmlFor="timeWithAtty">Time with Attorney in Hours</label>
+                        </div>
+                        <div className="form-group col-md-3">
                           <Field type="text" name="timeWithAtty" value={values.timeWithAtty}/>
                         </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-4">
-                          <label htmlFor="timeAtAccident">Time at Accident</label>
+                        <div className="form-group col-md-3">
+                          <label htmlFor="timeAtAccident">Time at Accident in Hours</label>
+                        </div>
+                        <div className="form-group col-md-3">
                           <Field type="text" name="timeAtAccident" value={values.timeAtAccident}/>
                         </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-4">
-                          <label htmlFor="timeRentingACar">Time Renting a Car</label>
+                        <div className="form-group col-md-3">
+                          <label htmlFor="timeRentingACar">Time Renting a Car in Hours</label>
+                        </div>
+                        <div className="form-group col-md-3">
                           <Field type="text" name="timeRentingACar" value={values.timeRentingACar}/>
                         </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-5">
+                        <div className="form-group col-md-3">
                           <label htmlFor="hourlyWageForOccupation">Hourly Wage for Occupation</label>
+                        </div>
+                        <div className="form-group col-md-3">
                           <Field type="text" name="hourlyWageForOccupation" value={values.hourlyWageForOccupation}/>
                         </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-5">
+                        <div className="form-group col-md-3">
                           <label htmlFor="age">Age of Victim</label>
+                        </div>
+                        <div className="form-group col-md-3">
                             <Field type="text" name="age" value={values.age}/>
                         </div>
                       </div>

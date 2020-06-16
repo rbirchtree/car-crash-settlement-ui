@@ -18,13 +18,25 @@ export default class MyForm extends React.Component {
         method="POST"
       >
         <div class="form-group">
-            <label>Email:</label>
-            <input type="email" name="email" />
+          <div className="form-row">
+            <div className="form-group col-md-1">
+              <label>Email:</label>
+            </div>
+            <div className="form-group col-md-3">
+              <input type="email" name="email" />
+            </div>
+          </div>
         </div>
         <div class="form-group">
-            <label>Message:</label>
-            <input type="text" name="message" />
+        <div className="form-row">
+            <div className="form-group col-md-1">
+              <label>Message:</label>
+            </div>
+            <div className="form-group col-md-1">
+              <input type="text" name="message" />
+            </div>
         </div>
+      </div>
         {status === "SUCCESS" ? <p>Thanks!</p> : <button className="btn btn-lg btn-outline-success mt-4 mb-4">Submit</button>}
         {status === "ERROR" && <p>Ooops! There was an error.</p>}
       </form>
