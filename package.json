@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "deploy": "aws s3 sync build/ s3://car-crash-ui --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"

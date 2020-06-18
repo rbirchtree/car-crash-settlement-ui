@@ -1,6 +1,76 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+img {
+  float: right;
+  margin: 0 0 1em 1em;
+  border-radius: 50%;
+}
+
+
 label {
   margin-right: 3px;
 };
+
+.wrapper{
+  display:grid;
+  grid-template-columns: 100px 100px;
+  grid-gap: 10px;
+}
+
+.columnThree {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 30px;
+}
+
+.columnTwo {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 30px;
+}
+
+.row:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.formspree {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.formspree:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+.formspree:active {
+	position:relative;
+	top:1px;
+}
 
 .total {
   font-weight: bold;
@@ -8,4 +78,81 @@ label {
 
 .brand{
   color:black;
+}
+
+.home{
+  position:fixed;
+  left: 5%;
+  font-family: 'Oswald', sans-serif;
+}
+
+nav ul {
+  list-style:none;
+  background-color: #444;
+  text-align: center;
+  padding: 0;
+  margin:0;
+  
+}
+
+nav li {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+
+nav a:hover {
+  background-color: #606060;
+  border-radius: 3px;
+}
+
+nav a.active {
+  background-color: #fff;
+  border-radius: 3px;
+  color: #444;
+  cursor: default;
+}
+
+.container{
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 600px) {
+  nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+ 
+  /* Option 1 - Display Inline */
+  nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+ 
+  /* Options 2 - Float
+  .nav li {
+    float: left;
+  }
+  .nav ul {
+    overflow: auto;
+    width: 600px;
+    margin: 0 auto;
+  }
+  .nav {
+    background-color: #444;
+  }
+  */
 }

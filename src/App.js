@@ -17,16 +17,16 @@ class App extends React.Component {
   render(){
     return(
     <Router>        
-        <nav className="navbar navbar-expand-lg navbar-light bg-light brand">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">A Better Settlement</Link>
+        <nav>
+          <ul>
+            <li>
+              <Link className="home" to="/">A Better Settlement</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">About</Link>
+            <li>
+              <Link to="/about">About</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/faq">FAQ</Link>
+            <li>
+              <Link to="/faq">FAQ</Link>
             </li>
           </ul>
         </nav>

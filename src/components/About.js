@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from "react-helmet";
 import MyForm from './Formspree.js';
-
+import rob from './media/rob.jpeg';
 export default function AboutPage(){
     
 
@@ -17,8 +17,8 @@ export default function AboutPage(){
               </Helmet>
             <h1>About: A Better Settlement</h1>
             <div className="col">
-                    <p>Rob Birch is a software engineer who was involved in a rear end collusion and his car was totaled in it.
-                        He negotiated a better settlement with the insurance companies using data similarly provided on this website. 
+                    <p><img src={rob} alt="Rob" />Rob Birch is a software engineer who was involved in a rear end collusion and his car was totaled in it.
+                        He negotiated a better settlement with the insurance companies using data similarly provided on this website.
                         He believes every victim in a car accident should get the treatment and compensation to move on with life. 
                         Most victims and attorneys, undersettle to their own detriment. 
                         To learn more about future products regarding settlement offerings enter your information below. 

@@ -17,27 +17,27 @@ export default class MyForm extends React.Component {
         action="https://formspree.io/meqrkodk"
         method="POST"
       >
-        <div class="form-group">
-          <div className="form-row">
-            <div className="form-group col-md-1">
+        <div>
+          <div>
+            <div >
               <label>Email:</label>
             </div>
-            <div className="form-group col-md-3">
+            <div>
               <input type="email" name="email" />
             </div>
           </div>
         </div>
-        <div class="form-group">
-        <div className="form-row">
-            <div className="form-group col-md-1">
+        <div>
+        <div>
+            <div >
               <label>Message:</label>
             </div>
-            <div className="form-group col-md-1">
-              <input type="text" name="message" />
+            <div>
+              <textarea rows="4" cols="50" type="text" name="message" />
             </div>
         </div>
       </div>
-        {status === "SUCCESS" ? <p>Thanks!</p> : <button className="btn btn-lg btn-outline-success mt-4 mb-4">Submit</button>}
+        {status === "SUCCESS" ? <p>Thanks!</p> : <button className="formspree">Submit</button>}
         {status === "ERROR" && <p>Ooops! There was an error.</p>}
       </form>
     );
