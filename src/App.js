@@ -1,7 +1,7 @@
 import React from 'react';
 import AdSense from 'react-adsense';
 import logo from './components/media/StandardPack/website_logo_transparent_background.png';
-import './App.css';
+// import './App.css';
 import About from './components/About';
 import Calculator from './components/Calculator';
 import Lost from './components/Lost';
@@ -14,19 +14,20 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
+  
   render(){
     return(
     <Router>        
-        <nav>
+        <nav className="">
           <ul>
             <li>
               <Link className="home" to="/"><img className="logo" src={logo} alt="A Better Settlement" /></Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link className="nav-link"to="/about">About</Link>
             </li>
             <li>
-              <Link to="/faq">FAQ</Link>
+              <Link className="nav-link" to="/faq">FAQ</Link>
             </li>
           </ul>
         </nav>
@@ -54,7 +55,9 @@ class App extends React.Component {
             layout='in-article'
             format='fluid'
           />
-        <div className="footer">Helping attorneys & Clients Negoiate a Better Settlement Since 2020</div>
+        <footer class="mastfoot mt-auto">
+          <div className="inner">Helping attorneys & Clients Negoiate a Better Settlement Since 2020</div>
+        </footer>
     </Router>
     )
   }
