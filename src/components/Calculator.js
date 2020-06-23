@@ -41,7 +41,6 @@ class Calculator extends React.Component {
                       age:42
                     }
                     }
-                    validate={(props, a) => console.log('a',props, a)}
                     onSubmit={(values, { setSubmitting }) => {
                           axios.post(process.env.REACT_APP_URL, {values})
                             .then(function(response){
@@ -198,10 +197,10 @@ class Calculator extends React.Component {
                   <sup>*</sup>PT means physical therapy and all time are in hours when asked in the questions.
                 </div>
                 <div className="row">
-                  <p><b>If you hit submit, your calculated injury settlement estimate data was voluntarily given and you may be contacted for further research</b></p>
+                  <p><b>If you hit submit, your calculated injury settlement estimate data was voluntarily given and you may be contacted for further research.</b></p>
                 </div>
                 <div>
-                  <button type="submit" className="btn btn-lg btn-outline-success mt-4 mb-4" disabled={isSubmitting}>Submit</button>
+                  <button type="submit" className="btnsub" disabled={isSubmitting}>Submit</button>
                 </div>
                 
                 

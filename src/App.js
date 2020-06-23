@@ -1,6 +1,6 @@
 import React from 'react';
-
-
+import AdSense from 'react-adsense';
+import logo from './components/media/StandardPack/website_logo_transparent_background.png';
 import './App.css';
 import About from './components/About';
 import Calculator from './components/Calculator';
@@ -20,7 +20,7 @@ class App extends React.Component {
         <nav>
           <ul>
             <li>
-              <Link className="home" to="/">A Better Settlement</Link>
+              <Link className="home" to="/"><img className="logo" src={logo} alt="A Better Settlement" /></Link>
             </li>
             <li>
               <Link to="/about">About</Link>
@@ -31,6 +31,7 @@ class App extends React.Component {
           </ul>
         </nav>
           <div className="container">
+          
             <Switch>
                 <Route path="/about">
                   <About />
@@ -45,6 +46,14 @@ class App extends React.Component {
                 <Route component={Lost} />
             </Switch>
           </div>     
+          
+          <AdSense.Google
+            client='ca-pub-2473381088887971'
+            slot='7806394673'
+            style={{ display: 'block' }}
+            layout='in-article'
+            format='fluid'
+          />
         <div className="footer">Helping attorneys & Clients Negoiate a Better Settlement Since 2020</div>
     </Router>
     )

@@ -16,6 +16,14 @@ img {
   border-radius: 50%;
 }
 
+.logo {
+  height: auto;
+  width: auto;
+  max-height: 72px;
+  max-width: 250px;
+  border-radius: 0;
+}
+
 
 label {
   margin-right: 3px;
@@ -55,13 +63,14 @@ label {
   margin-bottom: 5px;
 }
 
-.formspree {
+.btnsub {
 	box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
 	background-color:#768d87;
 	border-radius:5px;
 	border:1px solid #566963;
-	display:inline-block;
+  margin: 0 auto;
+  display:block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
@@ -71,11 +80,11 @@ label {
 	text-decoration:none;
 	text-shadow:0px -1px 0px #2b665e;
 }
-.formspree:hover {
+.btnsub:hover {
 	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
 	background-color:#6c7c7c;
 }
-.formspree:active {
+.btnsub:active {
 	position:relative;
 	top:1px;
 }
@@ -119,7 +128,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #606060;
+  color: #606060;
   border-radius: 3px;
 }
 
@@ -135,6 +144,17 @@ nav a.active {
   margin: 0 auto;
 }
 
+
+.footer {
+  font-family: 'Roboto', sans-serif;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+}
+
 @media screen and (min-width: 600px) {
   nav li {
     width: 120px;
@@ -144,6 +164,7 @@ nav a.active {
     font-size: 1.4em;
   }
  
+
   /* Option 1 - Display Inline */
   nav li {
     display: inline-block;

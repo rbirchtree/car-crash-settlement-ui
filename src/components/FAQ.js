@@ -39,8 +39,8 @@ export default function FAQ(){
                                 <b>Why should I use this data for my claim? You are not a lawyer.</b>
                             </p>
                             <p>
-                            Most lawyers are not programmers and settling accident claims can be very arbitary in  nature. 
-                            This is a tool to allow consumers a fighting chance to make a full recovery from an accident. Large insurance
+                            Most lawyers are not programmers, frequently too busy, and settling accident claims can be very arbitary in  nature. 
+                            This is a tool to allow consumers and a fighting chance to make a full recovery from an accident. Large insurance
                             companies already have tools like this, in fact they are significantly better using machine learning.
                             </p>
                         </li>
