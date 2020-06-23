@@ -60,7 +60,7 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                     <label htmlFor="email">Email</label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="email" name="email" placeholder="email"/>
                   </div>
                 </div>
@@ -68,7 +68,7 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                         <label htmlFor="firstName">First Name</label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                         <Field type="text" name="firstName" placeholder="John"/>
                   </div>       
                 </div>
@@ -76,7 +76,7 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                     <label htmlFor="lastName">Last Name</label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="lastName" name="lastName" placeholder="Doe"/>
                   </div>
                 </div>      
@@ -84,7 +84,7 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                     <label htmlFor="dateOfAccident">Date of Accident</label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <DatePicker 
                         selected={values.dateOfAccident}
                         dateFormat="MMMM d, yyyy"
@@ -98,7 +98,7 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                     <label htmlFor="dateRehabIsFinished">Date Rehab is Finished</label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <DatePicker 
                       selected={values.dateRehabIsFinished}
                       dateFormat="MMMM d, yyyy"
@@ -112,63 +112,63 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                     <label htmlFor="numOfVisitsToRehab">Number of Visits to PT</label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="number" name="numOfVisitsToRehab" value={values.numOfVisitsToRehab}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="columnTwo">
-                    <label htmlFor="timeAtRehabInHours">Time at PT in Hours per a Visit</label>
+                    <label htmlFor="timeAtRehabInHours">Time at PT Per a Visit<sup>*</sup></label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="number" name="timeAtRehabInHours" value={values.timeAtRehabInHours}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="columnTwo">
-                    <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Time Driving to PT per a Visit Roundtrip in Hours</label>
+                    <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Total time going to PT/Visit<sup>*</sup></label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                   <Field type="number" name="timeDrivingtoRehabPerAVisitRndTrip" value={values.timeDrivingtoRehabPerAVisitRndTrip}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="columnTwo">
-                  <label htmlFor="timeDoingRehabPerADay">Hours of PT at Home per a Day</label>
+                  <label htmlFor="timeDoingRehabPerADay">Time doing PT at Home/Day <sup>*</sup></label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="number" name="timeDoingRehabPerADay" value={values.timeDoingRehabPerADay}/>
                   </div>
                 </div>
                 <div className="row">
                     <div className="columnTwo">
-                      <label htmlFor="timeWithAtty">Time with Attorney in Hours</label>
+                      <label htmlFor="timeWithAtty">Time with Attorney<sup>*</sup></label>
                     </div>
-                    <div className="columnTwo">
+                    <div className="columnTwoB">
                       <Field type="number" name="timeWithAtty" value={values.timeWithAtty}/>
                     </div>
                 </div>
                 <div className="row">
                   <div className="columnTwo">
-                    <label htmlFor="timeAtAccident">Time at Accident in Hours</label>
+                    <label htmlFor="timeAtAccident">Time at Accident<sup>*</sup></label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="number" name="timeAtAccident" value={values.timeAtAccident}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="columnTwo">
-                  <label htmlFor="timeRentingACar">Time Renting a Car in Hours</label>
+                  <label htmlFor="timeRentingACar">Time Renting a Car<sup>*</sup></label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="number" name="timeRentingACar" value={values.timeRentingACar}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="columnTwo">
-                    <label htmlFor="hourlyWageForOccupation">Hourly Wage for Occupation</label>
+                    <label htmlFor="hourlyWageForOccupation">Wage for Occupation<sup>*</sup></label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="number" name="hourlyWageForOccupation" value={values.hourlyWageForOccupation}/>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                     <label htmlFor="age">Age of Victim</label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                     <Field type="number" name="age" value={values.age}/>
                   </div>
                 </div>
@@ -184,7 +184,7 @@ class Calculator extends React.Component {
                   <div className="columnTwo">
                     <label className="total"><b>Total</b></label>
                   </div>
-                  <div className="columnTwo">
+                  <div className="columnTwoB">
                   {  
 
                       numberFormat((1+(79-values.age)/79)*(2*values.hourlyWageForOccupation*((Number(values.timeAtAccident) +Number(values.timeRentingACar) + Number(values.timeWithAtty))+
@@ -194,10 +194,16 @@ class Calculator extends React.Component {
                       }
                   </div>
                 </div>
+                <div className="row">
+                  <sup>*</sup>PT means physical therapy and all time are in hours when asked in the questions.
+                </div>
+                <div className="row">
+                  <p><b>If you hit submit, your calculated injury settlement estimate data was voluntarily given and you may be contacted for further research</b></p>
+                </div>
                 <div>
                   <button type="submit" className="btn btn-lg btn-outline-success mt-4 mb-4" disabled={isSubmitting}>Submit</button>
                 </div>
-                     
+                
                 
               </Form>
           )}

@@ -36,15 +36,23 @@ label {
 
 .columnTwo {
   float: left;
-  width: 50%;
+  width: 70%;
   padding: 10px;
   height: 30px;
 }
+
+.columnTwoB {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  height: 30px;
+} 
 
 .row:after {
   content: "";
   display: block;
   clear: both;
+  margin-bottom: 5px;
 }
 
 .formspree {
