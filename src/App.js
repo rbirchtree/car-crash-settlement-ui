@@ -1,7 +1,7 @@
 import React from 'react';
 import AdSense from 'react-adsense';
 import logo from './components/media/StandardPack/website_logo_transparent_background.png';
-// import './App.css';
+import './App.css';
 import About from './components/About';
 import Calculator from './components/Calculator';
 import Lost from './components/Lost';
@@ -14,20 +14,30 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
+
+  //   componentWillMount() {
+  //     document.body.classList.add("container-fluid");
+  // }
+
+  // componentWillUnmount(){
+  //   document.body.classList.remove("container-fluid");
+  // }
   
   render(){
     return(
     <Router>        
-        <nav className="">
-          <ul>
-            <li>
-              <Link className="home" to="/"><img className="logo" src={logo} alt="A Better Settlement" /></Link>
+        <nav className="navbar  navbar-expand-lg navbar-light bg-dark">
+            <Link className="nav-link text-light" to="/"><img className="nav-logo" style={{width:100, marginTop: -7}} src={logo} alt="A Better Settlement"/></Link>
+          <ul className="navbar-nav">
+            {/* <li className="nav-item">
+              <Link className="nav-link text-light" to="/">A Better Settlement</Link>
+            </li>  */}
+              
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/about">About</Link>
             </li>
-            <li>
-              <Link className="nav-link"to="/about">About</Link>
-            </li>
-            <li>
-              <Link className="nav-link" to="/faq">FAQ</Link>
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/faq">FAQ</Link>
             </li>
           </ul>
         </nav>
@@ -55,9 +65,15 @@ class App extends React.Component {
             layout='in-article'
             format='fluid'
           />
-        <footer class="mastfoot mt-auto">
-          <div className="inner">Helping attorneys & Clients Negoiate a Better Settlement Since 2020</div>
-        </footer>
+    
+          
+            
+          
+          
+        <div className="footer">
+          <div class="col-12 col-sm-6 text-center"><sub>Helping attorneys & Clients Negoiate a Better Settlement Since 2020</sub></div>
+        </div>
+
     </Router>
     )
   }

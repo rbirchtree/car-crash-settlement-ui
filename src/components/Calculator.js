@@ -55,152 +55,114 @@ class Calculator extends React.Component {
             {({ isSubmitting, values, setFieldValue }) => (
             
               <Form>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="email">Email</label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="email" name="email" placeholder="email"/>
-                  </div>
-                </div>
-                <div className="row">        
-                  <div className="columnTwo">
+                    <div className="form row">
+                      <div className="col-md-4 mb-3">
                         <label htmlFor="firstName">First Name</label>
-                  </div>
-                  <div className="columnTwoB">
-                        <Field type="text" name="firstName" placeholder="John"/>
-                  </div>       
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="lastName">Last Name</label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="lastName" name="lastName" placeholder="Doe"/>
-                  </div>
-                </div>      
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="dateOfAccident">Date of Accident</label>
-                  </div>
-                  <div className="columnTwoB">
-                    <DatePicker 
-                        selected={values.dateOfAccident}
-                        dateFormat="MMMM d, yyyy"
-                        className="form-control"
-                        name="dateOfAccident"
-                        onChange={date => setFieldValue('dateOfAccident', date)}
-                      />
+                        <Field type="text" className="form-control" name="firstName" placeholder="John"/>
+                      </div>
+                      
+                      <div className="col-md-4 mb-3">
+                        <label htmlFor="lastName">Last Name</label>
+                        <Field type="lastName" className="form-control" name="lastName" placeholder="Doe"/>
+                      </div>
+                      <div className="col-md-4 mb-3">
+                        <label htmlFor="email">Email</label>
+                        <Field type="email" className="form-control" name="email" placeholder="email"/>
+                      </div>
                     </div>
-                  </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="dateRehabIsFinished">Date Rehab is Finished</label>
-                  </div>
-                  <div className="columnTwoB">
-                    <DatePicker 
-                      selected={values.dateRehabIsFinished}
-                      dateFormat="MMMM d, yyyy"
-                      className="form-control"
-                      name="startDate"
-                      onChange={date => setFieldValue('dateRehabIsFinished', date)}
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="numOfVisitsToRehab">Number of Visits to PT</label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="number" name="numOfVisitsToRehab" value={values.numOfVisitsToRehab}/>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="timeAtRehabInHours">Time at PT Per a Visit<sup>*</sup></label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="number" name="timeAtRehabInHours" value={values.timeAtRehabInHours}/>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Total time going to PT/Visit<sup>*</sup></label>
-                  </div>
-                  <div className="columnTwoB">
-                  <Field type="number" name="timeDrivingtoRehabPerAVisitRndTrip" value={values.timeDrivingtoRehabPerAVisitRndTrip}/>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                  <label htmlFor="timeDoingRehabPerADay">Time doing PT at Home/Day <sup>*</sup></label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="number" name="timeDoingRehabPerADay" value={values.timeDoingRehabPerADay}/>
-                  </div>
-                </div>
-                <div className="row">
-                    <div className="columnTwo">
-                      <label htmlFor="timeWithAtty">Time with Attorney<sup>*</sup></label>
+                    
+                    <div className="form row">
+                      <div class="form-group col-md-6">
+                        <label htmlFor="dateOfAccident">Date of Accident</label>
+                        <DatePicker 
+                            selected={values.dateOfAccident}
+                            dateFormat="MMMM d, yyyy"
+                            className="form-control"
+                            name="dateOfAccident"
+                            onChange={date => setFieldValue('dateOfAccident', date)}
+                          />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label htmlFor="dateRehabIsFinished">Date Rehab is Finished</label>
+                        <DatePicker 
+                          selected={values.dateRehabIsFinished}
+                          dateFormat="MMMM d, yyyy"
+                          className="form-control"
+                          name="startDate"
+                          onChange={date => setFieldValue('dateRehabIsFinished', date)}
+                        />
+                      </div>
                     </div>
-                    <div className="columnTwoB">
-                      <Field type="number" name="timeWithAtty" value={values.timeWithAtty}/>
+                    <div className="form row">
+                      <div class="form-group col-md-6">
+                        <label htmlFor="numOfVisitsToRehab">Number of Visits to PT</label>
+                        <Field type="number" className="form-control" name="numOfVisitsToRehab" value={values.numOfVisitsToRehab}/>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label htmlFor="timeAtRehabInHours">Time at PT Per a Visit<sup>*</sup></label>
+                        <Field type="number" className="form-control" name="timeAtRehabInHours" value={values.timeAtRehabInHours}/>
+                      </div>
                     </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="timeAtAccident">Time at Accident<sup>*</sup></label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="number" name="timeAtAccident" value={values.timeAtAccident}/>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                  <label htmlFor="timeRentingACar">Time Renting a Car<sup>*</sup></label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="number" name="timeRentingACar" value={values.timeRentingACar}/>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="hourlyWageForOccupation">Wage for Occupation<sup>*</sup></label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="number" name="hourlyWageForOccupation" value={values.hourlyWageForOccupation}/>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label htmlFor="age">Age of Victim</label>
-                  </div>
-                  <div className="columnTwoB">
-                    <Field type="number" name="age" value={values.age}/>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="columnTwo">
-                    <label className="total"><b>Total</b></label>
-                  </div>
-                  <div className="columnTwoB">
-                  {  
+                    <div className="form row">
+                      <div class="form-group col-md-6">
+                        <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Total time going to PT/Visit<sup>*</sup></label>
+                        <Field type="number" className="form-control" name="timeDrivingtoRehabPerAVisitRndTrip" value={values.timeDrivingtoRehabPerAVisitRndTrip}/>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label htmlFor="timeDoingRehabPerADay">Time doing PT at Home/Day <sup>*</sup></label>
+                        <Field type="number" className="form-control" name="timeDoingRehabPerADay" value={values.timeDoingRehabPerADay}/>
+                      </div>
+                    </div>
+                    <div className="form row">
+                      <div class="form-group col-md-6">
+                        <label htmlFor="timeWithAtty">Time with Attorney<sup>*</sup></label>
+                        <Field type="number" className="form-control" name="timeWithAtty" value={values.timeWithAtty}/>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label htmlFor="timeAtAccident">Time at Accident<sup>*</sup></label>
+                        <Field type="number" className="form-control" name="timeAtAccident" value={values.timeAtAccident}/>
+                      </div>
+                    </div>
+                    <div className="form row">
+                      <div class="form-group col-md-6">
+                        <label htmlFor="timeRentingACar">Time Renting a Car<sup>*</sup></label>
+                        <Field type="number" className="form-control" name="timeRentingACar" value={values.timeRentingACar}/>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label htmlFor="hourlyWageForOccupation">Wage for Occupation<sup>*</sup></label>
+                        <Field type="number" className="form-control" name="hourlyWageForOccupation" value={values.hourlyWageForOccupation}/>
+                      </div>
+                    </div>
+                    <div className="form row">
+                      <div class="form-group col-md-6">
+                        <label htmlFor="age">Age of Victim</label>
+                        <Field type="number" className="form-control" name="age" value={values.age}/>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label className="total"><b>Total:  </b></label>
+                        <div className="form-control">
+                            {  
+                          numberFormat((1+(79-values.age)/79)*(2*values.hourlyWageForOccupation*((Number(values.timeAtAccident) +Number(values.timeRentingACar) + Number(values.timeWithAtty))+
+                          ((((values.dateRehabIsFinished-values.dateOfAccident)/86400000)*Number(values.timeDoingRehabPerADay))+
+                          ((Number(values.timeDrivingtoRehabPerAVisitRndTrip)+Number(values.timeAtRehabInHours))*Number(values.numOfVisitsToRehab))))))
+                          //do a multipler of the average age of death in the us in 2020 * 2 for double entry of lost opportunites
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    
 
-                      numberFormat((1+(79-values.age)/79)*(2*values.hourlyWageForOccupation*((Number(values.timeAtAccident) +Number(values.timeRentingACar) + Number(values.timeWithAtty))+
-                      ((((values.dateRehabIsFinished-values.dateOfAccident)/86400000)*Number(values.timeDoingRehabPerADay))+
-                      ((Number(values.timeDrivingtoRehabPerAVisitRndTrip)+Number(values.timeAtRehabInHours))*Number(values.numOfVisitsToRehab))))))
-                      //do a multipler of the average age of death in the us in 2020 * 2 for double entry of lost opportunites
-                      }
-                  </div>
-                </div>
-                <div className="row">
+
+                  
+                
+                
                   <sup>*</sup>PT means physical therapy and all time are in hours when asked in the questions.
-                </div>
-                <div className="row">
+                
+                
                   <p><b>If you hit submit, your calculated injury settlement estimate data was voluntarily given and you may be contacted for further research.</b></p>
-                </div>
+                
                 <div>
-                  <button type="submit" className="btnsub" disabled={isSubmitting}>Submit</button>
+                  <button type="submit" className="btn btn-outline-primary btn-lg" disabled={isSubmitting}>Submit</button>
                 </div>
                 
                 
