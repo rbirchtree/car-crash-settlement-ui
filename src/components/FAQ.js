@@ -23,7 +23,7 @@ export default function FAQ(){
                                 <b>Why is my settlement from the insurance company amount different from what was estimated?</b>
                             </p>
                             <p>
-                                These settlement estimates are conservative estimates on what a rational person should ask for using common accounting and financial analysis techniques.
+                                These settlement estimates provided via the calculator are conservative estimates on what a rational person should ask for using common accounting and financial analysis techniques.
                             </p>
                         </li>
                         <li>
@@ -51,7 +51,7 @@ export default function FAQ(){
                                 <b>Is "A Better Settlement" interested in working with lawyers, or investors?</b>
                             </p>    
                             <p>
-                                Yes, "A Better Settlement" is interested in working with lawyers or investors. Development has only just begun.
+                                Yes, "A Better Settlement" is interested in working with lawyers, medical professionals, or investors. Development has only just begun.
                                 Please feel free to contact us at rob.w.birch(at)gmail.com or use the form on the About Page.
                             </p>
                         </li>
