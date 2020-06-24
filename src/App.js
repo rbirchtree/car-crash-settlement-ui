@@ -26,7 +26,7 @@ class App extends React.Component {
   render(){
     return(
     <Router>        
-        <nav className="navbar  navbar-expand-lg navbar-light bg-dark">
+        <nav className="navbar  navbar-expand-lg navbar-light bg-dark mb-3">
             <Link className="nav-link text-light" to="/"><img className="nav-logo" style={{width:100, marginTop: -7}} src={logo} alt="A Better Settlement"/></Link>
           <ul className="navbar-nav">
             {/* <li className="nav-item">
@@ -71,7 +71,7 @@ class App extends React.Component {
           
           
         <div className="footer">
-          <div class="col-12 col-sm-6 text-center"><sub>Helping attorneys & Clients Negoiate a Better Settlement Since 2020</sub></div>
+          <div className="col-12 col-sm-6 text-center"><sub>Helping attorneys & Clients Negoiate a Better Settlement Since 2020</sub></div>
         </div>
 
     </Router>

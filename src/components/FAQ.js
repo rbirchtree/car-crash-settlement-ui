@@ -31,7 +31,7 @@ export default function FAQ(){
                                 <b>What factors drives personal injury settlements?</b>
                             </p>
                             <p>
-                                Generally, medical bills, lost income from doing rehab, pain and suffering, etc.</p>
+                                Generally medical bills, a total car, lost income from doing rehab, pain and suffering, etc.</p>
                         </li>
                             
                         <li>

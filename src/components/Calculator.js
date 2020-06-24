@@ -56,24 +56,24 @@ class Calculator extends React.Component {
             
               <Form>
                     <div className="form row">
-                      <div className="col-md-4 mb-3">
+                      <div className="col-xs-4 ml-2 mb-2">
                         <label htmlFor="firstName">First Name</label>
                         <Field type="text" className="form-control" name="firstName" placeholder="John"/>
                       </div>
                       
-                      <div className="col-md-4 mb-3">
+                      <div className="col-xs-4 ml-2 mb-2">
                         <label htmlFor="lastName">Last Name</label>
                         <Field type="lastName" className="form-control" name="lastName" placeholder="Doe"/>
                       </div>
-                      <div className="col-md-4 mb-3">
-                        <label htmlFor="email">Email</label>
+                      <div className="col-xs-4 ml-1 mb-2">
+                        <label className="mr-2" htmlFor="email">Email</label>
                         <Field type="email" className="form-control" name="email" placeholder="email"/>
                       </div>
                     </div>
                     
                     <div className="form row">
-                      <div class="form-group col-md-6">
-                        <label htmlFor="dateOfAccident">Date of Accident</label>
+                      <div className="form-group col-md-6 ml-1 mb-1">
+                        <label className="mr-2" htmlFor="dateOfAccident">Date of Accident</label>
                         <DatePicker 
                             selected={values.dateOfAccident}
                             dateFormat="MMMM d, yyyy"
@@ -82,8 +82,8 @@ class Calculator extends React.Component {
                             onChange={date => setFieldValue('dateOfAccident', date)}
                           />
                       </div>
-                      <div class="form-group col-md-6">
-                        <label htmlFor="dateRehabIsFinished">Date Rehab is Finished</label>
+                      <div className="form-group col-md-6 ml-1 mb-1">
+                        <label className="mr-2" htmlFor="dateRehabIsFinished">Date Rehab is Finished</label>
                         <DatePicker 
                           selected={values.dateRehabIsFinished}
                           dateFormat="MMMM d, yyyy"
@@ -94,51 +94,51 @@ class Calculator extends React.Component {
                       </div>
                     </div>
                     <div className="form row">
-                      <div class="form-group col-md-6">
+                      <div class="form-group ml-2 col-xs-5">
                         <label htmlFor="numOfVisitsToRehab">Number of Visits to PT</label>
                         <Field type="number" className="form-control" name="numOfVisitsToRehab" value={values.numOfVisitsToRehab}/>
                       </div>
-                      <div class="form-group col-md-6">
+                      <div className="form-group ml-2 col-xs-5">
                         <label htmlFor="timeAtRehabInHours">Time at PT Per a Visit<sup>*</sup></label>
                         <Field type="number" className="form-control" name="timeAtRehabInHours" value={values.timeAtRehabInHours}/>
                       </div>
                     </div>
                     <div className="form row">
-                      <div class="form-group col-md-6">
+                      <div className="form-group ml-2 col-xs-5">
                         <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">Total time going to PT/Visit<sup>*</sup></label>
                         <Field type="number" className="form-control" name="timeDrivingtoRehabPerAVisitRndTrip" value={values.timeDrivingtoRehabPerAVisitRndTrip}/>
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group ml-2 col-xs-5">
                         <label htmlFor="timeDoingRehabPerADay">Time doing PT at Home/Day <sup>*</sup></label>
                         <Field type="number" className="form-control" name="timeDoingRehabPerADay" value={values.timeDoingRehabPerADay}/>
                       </div>
                     </div>
                     <div className="form row">
-                      <div class="form-group col-md-6">
+                      <div class="form-group ml-2 col-xs-5">
                         <label htmlFor="timeWithAtty">Time with Attorney<sup>*</sup></label>
                         <Field type="number" className="form-control" name="timeWithAtty" value={values.timeWithAtty}/>
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group ml-2 col-xs-5">
                         <label htmlFor="timeAtAccident">Time at Accident<sup>*</sup></label>
                         <Field type="number" className="form-control" name="timeAtAccident" value={values.timeAtAccident}/>
                       </div>
                     </div>
                     <div className="form row">
-                      <div class="form-group col-md-6">
+                      <div className="form-group ml-2 col-xs-5">
                         <label htmlFor="timeRentingACar">Time Renting a Car<sup>*</sup></label>
                         <Field type="number" className="form-control" name="timeRentingACar" value={values.timeRentingACar}/>
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group ml-2 col-xs-5">
                         <label htmlFor="hourlyWageForOccupation">Wage for Occupation<sup>*</sup></label>
                         <Field type="number" className="form-control" name="hourlyWageForOccupation" value={values.hourlyWageForOccupation}/>
                       </div>
                     </div>
                     <div className="form row">
-                      <div class="form-group col-md-6">
+                      <div class="form-group ml-2 col-xs-5">
                         <label htmlFor="age">Age of Victim</label>
                         <Field type="number" className="form-control" name="age" value={values.age}/>
                       </div>
-                      <div class="form-group col-md-6">
+                      <div className="form-group ml-2 col-xs-5">
                         <label className="total"><b>Total:  </b></label>
                         <div className="form-control">
                             {  
@@ -151,10 +151,6 @@ class Calculator extends React.Component {
                       </div>
                     </div>
                     
-
-
-                  
-                
                 
                   <sup>*</sup>PT means physical therapy and all time are in hours when asked in the questions.
                 
@@ -162,7 +158,7 @@ class Calculator extends React.Component {
                   <p><b>If you hit submit, your calculated injury settlement estimate data was voluntarily given and you may be contacted for further research.</b></p>
                 
                 <div>
-                  <button type="submit" className="btn btn-outline-primary btn-lg" disabled={isSubmitting}>Submit</button>
+                  <button type="submit" className="btn btn-primary btnsub" disabled={isSubmitting}>Submit</button>
                 </div>
                 
                 
