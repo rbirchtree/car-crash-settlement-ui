@@ -39,7 +39,7 @@ export default function FAQ(){
                                 <b>Why should I use this data for my claim? You are not a lawyer.</b>
                             </p>
                             <p>
-                            Most lawyers are not programmers, frequently too busy, and settling accident claims can be very arbitary in  nature. 
+                            Most lawyers are not programmers and are frequently too busy. Additionally, settling accident claims can be very arbitary in  nature. 
                             This is a tool to allow consumers and a fighting chance to make a full recovery from an accident. Large insurance
                             companies already have tools like this, in fact they are significantly better using machine learning.
                             </p>
@@ -52,7 +52,7 @@ export default function FAQ(){
                             </p>    
                             <p>
                                 Yes, "A Better Settlement" is interested in working with lawyers, medical professionals, or investors. Development has only just begun.
-                                Please feel free to contact us at rob.w.birch(at)gmail.com or use the form on the About Page.
+                                please feel free to contact me using the form on the About Page.
                             </p>
                         </li>
 

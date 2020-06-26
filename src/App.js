@@ -15,23 +15,13 @@ import {
 
 class App extends React.Component {
 
-  //   componentWillMount() {
-  //     document.body.classList.add("container-fluid");
-  // }
-
-  // componentWillUnmount(){
-  //   document.body.classList.remove("container-fluid");
-  // }
-  
   render(){
     return(
     <Router>        
         <nav className="navbar  navbar-expand-lg navbar-light bg-dark mb-3">
-            <Link className="nav-link text-light" to="/"><img className="nav-logo" style={{width:100, marginTop: -7}} src={logo} alt="A Better Settlement"/></Link>
+            <Link className="nav-link text-light" to="/"><img className="nav-logo" style={{width:120, marginTop: -10}} src={logo} alt="A Better Settlement"/></Link>
           <ul className="navbar-nav">
-            {/* <li className="nav-item">
-              <Link className="nav-link text-light" to="/">A Better Settlement</Link>
-            </li>  */}
+            
               
             <li className="nav-item">
               <Link className="nav-link text-light" to="/about">About</Link>
