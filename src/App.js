@@ -5,6 +5,10 @@ import './App.css';
 import About from './components/About';
 import Calculator from './components/Calculator';
 import Lost from './components/Lost';
+// import FilterAble from './components/DataFilter';
+// import FilterTable from './components/FilterTable';
+import Planets from './components/Planets';
+
 import FAQ from './components/FAQ';
 import {
   BrowserRouter as Router,
@@ -14,15 +18,13 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
-
+    
   render(){
     return(
     <Router>        
         <nav className="navbar  navbar-expand-lg navbar-light bg-dark mb-3">
             <Link className="nav-link text-light" to="/"><img className="nav-logo" style={{width:120, marginTop: -10}} src={logo} alt="A Better Settlement"/></Link>
           <ul className="navbar-nav">
-            
-              
             <li className="nav-item">
               <Link className="nav-link text-light" to="/about">About</Link>
             </li>
@@ -32,13 +34,16 @@ class App extends React.Component {
           </ul>
         </nav>
           <div className="container">
-          
+            
             <Switch>
                 <Route path="/about">
                   <About />
                 </Route>
                 <Route path="/faq">
                   <FAQ />
+                </Route>
+                <Route path="/login">
+                  <Planets/>
                 </Route>
                 <Route path="/">
                   <Calculator />
@@ -55,11 +60,6 @@ class App extends React.Component {
             layout='in-article'
             format='fluid'
           />
-    
-          
-            
-          
-          
         <div className="footer">
           <div className="col-12 col-sm-6 text-center"><sub>Helping attorneys & Clients Negoiate a Better Settlement Since 2020</sub></div>
         </div>
