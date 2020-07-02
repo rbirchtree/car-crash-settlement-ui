@@ -24,6 +24,7 @@ export default function FAQ(){
                             </p>
                             <p>
                                 These settlement estimates provided via the calculator are conservative estimates on what a rational person should ask for using common accounting and financial analysis techniques.
+                                It is estimated 90% of all settlements for whiplash cases are too low.
                             </p>
                         </li>
                         <li>

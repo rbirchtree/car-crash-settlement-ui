@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open",
+    "cypress": "cypress open",
     "deploy": "aws s3 sync build/ s3://www.abettersettlement.com --acl public-read",
     "postbuild": "react-snap"
   },
@@ -43,7 +43,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^4.7.0",
+    "cypress": "^4.9.0",
     "react-snap": "^1.23.0"
   }
 }

@@ -17,11 +17,11 @@ class Calculator extends React.Component {
             <div className="container">
               <Helmet>
                   <title>A Better Settlement</title>
-                  <meta name="description" content="settlement calculator personal injury lawyer whiplash" />
+                  <meta name="description" content="Personal Injury Whiplash Settlement Calculator" />
                   <meta property="og:locale" content="en_US" />
                   <meta property="og:type" content="website" />
                   <meta property="og:url" content="https://abettersettlement.com" />
-                  <meta property="og:description" content="settlement calculator personal injury lawyer whiplash" />
+                  <meta property="og:description" content="Personal Injury Whiplash Settlement Calculator" />
               </Helmet>
                 <Formik
                     initialValues={{
@@ -55,38 +55,25 @@ class Calculator extends React.Component {
             {({ isSubmitting, values, setFieldValue }) => (
             
                 <Form>
-                      {/* <div className="form row justify-content-center">
-                        <div className="col-xs-4 ml-2 mb-2">
-                          <label htmlFor="firstName">First Name</label>
-                          <Field type="text" className="form-control" name="firstName" placeholder="John"/>
-                        </div>
-                        
-                        <div className="col-xs-4 ml-2 mb-2">
-                          <label htmlFor="lastName">Last Name</label>
-                          <Field type="lastName" className="form-control" name="lastName" placeholder="Doe"/>
-                        </div>
-                        <div className="col-xs-4 ml-1 mb-2">
-                          <label className="mr-2" htmlFor="email">Email</label>
-                          <Field type="email" className="form-control" name="email" placeholder="email"/>
-                        </div>
-                      </div> */}
                       <div className="form row justify-content-center">
-                        <div className="form-group ml-2 col-sm-3">
-                          <sup>*</sup>PT means physical therapy and all time are in hours when asked in the questions.
+                        <div className="form-group ml-2 col-sm-7">
+                          <h1>Whiplash Calculator Estimate</h1>
+                          <p>This calculator is meant to provide an estimate on a reasonable demand to ask for compensation for a whiplash injury.</p>
                         </div>
                       </div>
                       <div className="form row justify-content-center">
-                        <div className="form-group ml-1 mb-1">
+                        <div className="form-group ml-2 col-sm-3">
                           <label className="mr-2 lbl" htmlFor="dateOfAccident">Date of Accident</label>
                           <DatePicker 
                               selected={values.dateOfAccident}
+                              autoFocus
                               dateFormat="MMMM d, yyyy"
                               className="form-control"
                               name="dateOfAccident"
                               onChange={date => setFieldValue('dateOfAccident', date)}
                             />
                         </div>
-                        <div className="form-group col-xs-4 ml-1 mb-1">
+                        <div className="form-group ml-2 col-sm-3">
                           <label className="mr-2 lbl" htmlFor="dateRehabIsFinished">Date Rehab is Finished</label>
                           <DatePicker 
                             selected={values.dateRehabIsFinished}
@@ -154,17 +141,11 @@ class Calculator extends React.Component {
                           </div>
                         </div>
                       </div>
-                      
-                      
-                      {/* <div className="form-group ml-2 col-sm-3">
-                        <p><b>If you hit submit, your calculated injury settlement estimate data was voluntarily given and you may be contacted for further research.</b></p>
-                      </div> */}
-                    
-                  {/* <div>
-                    <button type="submit" className="btn btn-primary btnsub" disabled={isSubmitting}>Submit</button>
-                  </div> */}
-                  
-                  
+                      <div className="form row justify-content-center">
+                        <div className="form-group ml-2 col-sm-3">
+                          <sup>*PT means physical therapy and all time are in hours when asked in the questions.</sup>
+                        </div>
+                      </div>
                 </Form>
             )}
         </Formik>
