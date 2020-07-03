@@ -59,7 +59,7 @@ class App extends React.Component {
             style={{ display: 'block' }}
             layout='in-article'
             format='fluid'
-          />
+          /> 
         <div className="footer">
           <div className="col-12 col-sm-6 text-center"><sub>Helping attorneys & Clients Negoiate a Better Settlement Since 2020</sub></div>
         </div>

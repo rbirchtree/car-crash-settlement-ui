@@ -8,6 +8,8 @@ describe('App', () => {
         cy.visit('/')
         cy.get('h1')
         .should('have.text', 'Whiplash Calculator Estimate');
+        cy.focused()
+            .should('have.class','react-datepicker-wrapper')
     })
 
     it('visits the about', () => {
