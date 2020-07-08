@@ -1,5 +1,5 @@
 import React from 'react';
-import AdSense from 'react-adsense';
+// import AdSense from 'react-adsense';
 import logo from './components/media/StandardPack/website_logo_transparent_background.png';
 import './App.css';
 import About from './components/About';
@@ -7,7 +7,7 @@ import Calculator from './components/Calculator';
 import Lost from './components/Lost';
 // import FilterAble from './components/DataFilter';
 // import FilterTable from './components/FilterTable';
-import Planets from './components/Planets';
+import Accidents from './components/Accidents';
 
 import FAQ from './components/FAQ';
 import {
@@ -43,7 +43,7 @@ class App extends React.Component {
                   <FAQ />
                 </Route>
                 <Route path="/login">
-                  <Planets/>
+                  <Accidents/>
                 </Route>
                 <Route path="/">
                   <Calculator />
