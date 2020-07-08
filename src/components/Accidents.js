@@ -64,7 +64,7 @@ const Accidents = () => {
               type="button" 
               onClick={() => clickSort('numofvisitstorehab')}
               >
-              Number of Visitis to Rehab
+              Number of Visits to Rehab
               </button>  
             </th>
             <th>

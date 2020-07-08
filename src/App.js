@@ -5,8 +5,8 @@ import './App.css';
 import About from './components/About';
 import Calculator from './components/Calculator';
 import Lost from './components/Lost';
-// import FilterAble from './components/DataFilter';
-// import FilterTable from './components/FilterTable';
+import Tutorial from './components/Tutorial';
+
 import Accidents from './components/Accidents';
 
 import FAQ from './components/FAQ';
@@ -31,9 +31,12 @@ class App extends React.Component {
             <li className="nav-item">
               <Link className="nav-link text-light" to="/faq">FAQ</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/tutorial">Overview</Link>
+            </li>
           </ul>
         </nav>
-          <div className="container">
+          <div className="container wrapper">
             
             <Switch>
                 <Route path="/about">
@@ -45,12 +48,17 @@ class App extends React.Component {
                 <Route path="/login">
                   <Accidents/>
                 </Route>
+                <Route path="/tutorial">
+                  <Tutorial />
+                </Route>
                 <Route path="/">
                   <Calculator />
                 </Route>
                 
+                
                 <Route component={Lost} />
             </Switch>
+            
           </div>     
           
           {/* <AdSense.Google
@@ -60,9 +68,12 @@ class App extends React.Component {
             layout='in-article'
             format='fluid'
           />  */}
-        <div className="footer">
-          <div className="col-12 col-sm-6 text-center"><sub>Helping attorneys & Clients Negoiate a Better Settlement Since 2020</sub></div>
+        
+    <footer class="footer">
+        <div class="container">
+          <span class="text-muted">Helping attorneys & Clients Negoiate a Better Settlement Since 2020.</span>
         </div>
+    </footer>
 
     </Router>
     )
