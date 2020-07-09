@@ -36,7 +36,8 @@ class App extends React.Component {
             </li>
           </ul>
         </nav>
-          <div className="container wrapper">
+        <div id="wrap">
+          <div id="main" className="container clear-top">
             
             <Switch>
                 <Route path="/about">
@@ -59,8 +60,8 @@ class App extends React.Component {
                 <Route component={Lost} />
             </Switch>
             
-          </div>     
-          
+            </div>       
+          </div>
           {/* <AdSense.Google
             client='ca-pub-2473381088887971'
             slot='7806394673'
@@ -69,11 +70,9 @@ class App extends React.Component {
             format='fluid'
           />  */}
         
-    <footer class="footer">
-        <div class="container">
-          <span class="text-muted">Helping attorneys & Clients Negoiate a Better Settlement Since 2020.</span>
-        </div>
-    </footer>
+    <footer className="footer">
+          <span className="text-muted">Helping Attorneys & Clients Negoiate a Better Settlement Since 2020.</span>
+    </footer> 
 
     </Router>
     )

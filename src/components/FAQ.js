@@ -40,7 +40,7 @@ export default function FAQ(){
                                 <b>Why should I use this data for my claim? You are not a lawyer.</b>
                             </p>
                             <p>
-                            Most lawyers are not programmers and are frequently too busy to keep track of various statistics. Additionally, settling accident claims can be very arbitrary in  nature. 
+                            Settling accident claims can be very arbitrary in  nature. 
                             This is a tool to allow consumers and a fighting chance to make a full recovery from an accident. Large insurance
                             companies already have tools like this, in fact they are significantly better using machine learning and artificial intelligence.
                             </p>

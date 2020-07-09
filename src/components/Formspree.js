@@ -33,7 +33,7 @@ export default class MyForm extends React.Component {
               <label>Message:</label>
             </div>
             <div>
-              <textarea rows="4" cols="50" type="text" name="message" />
+              <textarea type="text" name="message" />
             </div>
         </div>
       </div>

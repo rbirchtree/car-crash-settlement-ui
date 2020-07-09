@@ -37,9 +37,9 @@ const Accidents = () => {
   }
 
   return (
-
+    <div>
+      <h1>Car Crash Data</h1>
       <table>
-        <caption>Car Accidents Data</caption>
         <thead>
           <tr>
             <th>
@@ -89,7 +89,7 @@ const Accidents = () => {
 
         </tbody>
       </table>
-    
+    </div>
   );
 };
 export default Accidents;
