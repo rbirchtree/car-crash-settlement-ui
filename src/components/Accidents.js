@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { numberFormat } from "./numCurrency";
-
+import Accident from './Accident';
+import { Link}  from "react-router-dom";
 const Accidents = () => {
 
   const [hasError, setErrors] = useState(false);
@@ -84,6 +85,7 @@ const Accidents = () => {
                 <td>{numberFormat(accident.settlementamt)}</td>
                 <td>{accident.numofvisitstorehab}</td>
                 <td>{accident.notes}</td>
+                <td><Accident id={accident.id}/></td>
               </tr>
             ))}
 

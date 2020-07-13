@@ -6,7 +6,7 @@ import About from './components/About';
 import Calculator from './components/Calculator';
 import Lost from './components/Lost';
 import Tutorial from './components/Tutorial';
-
+import Accident from './components/Accident';
 import Accidents from './components/Accidents';
 
 import FAQ from './components/FAQ';
@@ -36,8 +36,8 @@ class App extends React.Component {
             </li>
           </ul>
         </nav>
-        <div id="wrap">
-          <div id="main" className="container clear-top">
+        
+          <div className="container clear-top">
             
             <Switch>
                 <Route path="/about">
@@ -46,8 +46,11 @@ class App extends React.Component {
                 <Route path="/faq">
                   <FAQ />
                 </Route>
-                <Route path="/login">
+                <Route path="/data">
                   <Accidents/>
+                </Route>
+                <Route path="/data/:id">
+                  <Accident/>
                 </Route>
                 <Route path="/tutorial">
                   <Tutorial />
@@ -61,7 +64,7 @@ class App extends React.Component {
             </Switch>
             
             </div>       
-          </div>
+          
           {/* <AdSense.Google
             client='ca-pub-2473381088887971'
             slot='7806394673'
@@ -70,9 +73,9 @@ class App extends React.Component {
             format='fluid'
           />  */}
         
-    <footer className="footer">
+    <div className="footer">
           <span className="text-muted">Helping Attorneys & Clients Negoiate a Better Settlement Since 2020.</span>
-    </footer> 
+    </div> 
 
     </Router>
     )
