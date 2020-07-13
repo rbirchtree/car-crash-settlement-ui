@@ -56,9 +56,9 @@ class Calculator extends React.Component {
             
                 <Form>
                       <div className="form row justify-content-center">
-                        <div className="form-group ml-2 col-sm-7">
-                          <h1>Whiplash Calculator Estimate</h1>
-                          <p>This calculator is meant to provide an estimate on a reasonable demand to ask for compensation for a whiplash injury.</p>
+                        <div className="text-center form-group ml-2 col-sm-7">
+                          <h1>Whiplash Estimate</h1>
+                          <p>This is meant to provide an estimate of a reasonable demand to ask for compensation for a whiplash injury.</p>
                         </div>
                       </div>
                       <div className="form row justify-content-center">
@@ -119,7 +119,7 @@ class Calculator extends React.Component {
                           <label htmlFor="timeRentingACar">Time Renting a Car<sup>*</sup></label>
                           <Field type="number" className="form-control" name="timeRentingACar" value={values.timeRentingACar}/>
                         </div>
-                        <div class="form-group ml-2 col-sm-3">
+                        <div className="form-group ml-2 col-sm-3">
                           <label htmlFor="hourlyWageForOccupation">Wage for Occupation<sup>*</sup></label>
                           <Field type="number" className="form-control" name="hourlyWageForOccupation" value={values.hourlyWageForOccupation}/>
                         </div>
@@ -142,7 +142,7 @@ class Calculator extends React.Component {
                         </div>
                       </div>
                       <div className="form row justify-content-center">
-                        <div className="form-group ml-2 col-sm-3">
+                        <div className="form-group ml-2 col-sm-3 mb-2" >
                           <sup>*PT means physical therapy and all time are in hours when asked in the questions.</sup>
                         </div>
                       </div>
