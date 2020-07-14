@@ -60,8 +60,14 @@ body {
   position: fixed;
   bottom: 0px;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #fff;
 }
+
+
+.push {
+  height: 50px;
+}
+
 
 textarea {
   -webkit-box-sizing: border-box;

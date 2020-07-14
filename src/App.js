@@ -62,7 +62,7 @@ class App extends React.Component {
                 
                 <Route component={Lost} />
             </Switch>
-            
+            <div class="push"></div>
             </div>       
           
           {/* <AdSense.Google
@@ -73,7 +73,7 @@ class App extends React.Component {
             format='fluid'
           />  */}
         
-    <div className="footer">
+    <div className="text-center footer">
           <span className="text-muted">Helping Attorneys & Clients Negoiate a Better Settlement Since 2020.</span>
     </div> 
 
