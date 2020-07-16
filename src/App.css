@@ -68,6 +68,16 @@ body {
   height: 50px;
 }
 
+.filterBtn{
+  width: 90%;
+  margin: 0px 5px;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.visits{
+  width: 150px;
+}
 
 textarea {
   -webkit-box-sizing: border-box;
@@ -75,9 +85,6 @@ textarea {
   box-sizing: border-box;
   width: 100%;
 }
-
-
-
 
 @media (min-width: 576px) {
   textarea {

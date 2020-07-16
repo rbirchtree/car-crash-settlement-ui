@@ -46,11 +46,9 @@ class App extends React.Component {
                 <Route path="/faq">
                   <FAQ />
                 </Route>
-                <Route path="/data">
+                <Route exact path="/data/:id" component={Accident}/>
+                <Route exact path="/data">
                   <Accidents/>
-                </Route>
-                <Route path="/data/:id">
-                  <Accident/>
                 </Route>
                 <Route path="/tutorial">
                   <Tutorial />

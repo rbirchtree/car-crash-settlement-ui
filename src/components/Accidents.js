@@ -44,48 +44,61 @@ const Accidents = () => {
         <thead>
           <tr>
             <th>
-              <button type="button" 
+              <button 
+              className="filterBtn"
+              type="button" 
               onClick={() => clickSort('zipcodeofaccident')}
-              // className={getClassNamesFor('zipcodeofaccident')}
               >
-                Zip Code of Accident
+                ZIP Code
               </button>
             </th>
             <th>
-              <button 
+              <button
+              className="filterBtn" 
               type="button" 
               onClick={() => clickSort('settlementamt')}
-              // className={getClassNamesFor('settlementamt')}
               >
-                Settlement Amount
+                Settlement
               </button>  
             </th>
             <th>
-              <button 
+              <button
+              className="filterBtn visits" 
               type="button" 
               onClick={() => clickSort('numofvisitstorehab')}
               >
-              Number of Visits to Rehab
+              Visits to Rehab
               </button>  
             </th>
             <th>
-              <button 
+              <button
+              className="filterBtn" 
               type="button" 
               onClick={() => clickSort('notes')}
               >
                 Notes
               </button>  
             </th>
+            <th>
+              <button
+              className="filterBtn"  
+              type="button" 
+              onClick={() => clickSort('notes')}
+              >
+                Edit
+              </button>  
+            </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
             {accidents.map((accident,index) => (
               <tr key={index}>
                 <td>{accident.zipcodeofaccident}</td>
                 <td>{numberFormat(accident.settlementamt)}</td>
                 <td>{accident.numofvisitstorehab}</td>
-                <td>{accident.notes}</td>
-                <td><Accident id={accident.id}/></td>
+                <td className="text-left">{accident.notes}</td>
+                {/* <td><Accident id={accident.id}/></td> */}
+                <Link to={`data/${accident.id}`}>Edit {accident.id}</Link>
               </tr>
             ))}
 
