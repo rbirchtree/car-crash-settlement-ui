@@ -1,5 +1,6 @@
 import React from 'react';
 // import AdSense from 'react-adsense';
+import Helmet from "react-helmet";
 import logo from './components/media/StandardPack/website_logo_transparent_background.png';
 import './App.css';
 import About from './components/About';
@@ -21,61 +22,61 @@ class App extends React.Component {
     
   render(){
     return(
-    <Router>        
-        <nav className="navbar  navbar-expand-lg navbar-light bg-dark mb-3">
-            <Link className="nav-link text-light" to="/"><img className="nav-logo" style={{width:120, marginTop: -10}} src={logo} alt="A Better Settlement"/></Link>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link text-light" to="/about">About</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-light" to="/faq">FAQ</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-light" to="/tutorial">Overview</Link>
-            </li>
-          </ul>
-        </nav>
-        
-          <div className="container clear-top">
-            
-            <Switch>
-                <Route path="/about">
-                  <About />
-                </Route>
-                <Route path="/faq">
-                  <FAQ />
-                </Route>
-                <Route exact path="/data/:id" component={Accident}/>
-                <Route exact path="/data">
-                  <Accidents/>
-                </Route>
-                <Route path="/tutorial">
-                  <Tutorial />
-                </Route>
-                <Route path="/">
-                  <Calculator />
-                </Route>
-                
-                
-                <Route component={Lost} />
-            </Switch>
-            <div class="push"></div>
-            </div>       
+    <div>
+      <Helmet>
+          <title>Calculator</title>
+          <meta name="description" content="lost car wreck pro se" />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://abettersettlement.com" />
+          <meta property="og:description" content="pro se car wreck whiplash" />
+        </Helmet>
+      <Router>        
+          <nav className="navbar  navbar-expand-lg navbar-light bg-dark mb-3">
+              <Link className="nav-link text-light" to="/"><img className="nav-logo" style={{width:120, marginTop: -10}} src={logo} alt="A Better Settlement"/></Link>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/about">About</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/faq">FAQ</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/tutorial">Tutorial</Link>
+              </li>
+            </ul>
+          </nav>
           
-          {/* <AdSense.Google
-            client='ca-pub-2473381088887971'
-            slot='7806394673'
-            style={{ display: 'block' }}
-            layout='in-article'
-            format='fluid'
-          />  */}
-        
-    <div className="text-center footer">
-          <span className="text-muted">Helping Attorneys & Clients Negoiate a Better Settlement Since 2020.</span>
-    </div> 
+            <div className="container clear-top">
+              
+              <Switch>
+                  <Route path="/about">
+                    <About />
+                  </Route>
+                  <Route exact path="/faq" component={FAQ}/>
+                  <Route exact path="/data/:id" component={Accident}/>
+                  <Route exact path="/data" component={Accidents}/>
+                  <Route exact path="/tutorial" component={Tutorial}/>
+                  <Route exact path="/" component={Calculator}/>
+                  <Route component={Lost} />
+              </Switch>
+              <div class="push"></div>
+              </div>       
+            
+            {/* <AdSense.Google
+              client='ca-pub-2473381088887971'
+              slot='7806394673'
+              style={{ display: 'block' }}
+              layout='in-article'
+              format='fluid'
+            />  */}
+          
+      <div className="text-center footer">
+            <span className="text-muted">Helping Attorneys & Clients Negoiate a Better Settlement Since 2020.</span>
+      </div> 
 
-    </Router>
+      </Router>
+    </div>
     )
   }
 }

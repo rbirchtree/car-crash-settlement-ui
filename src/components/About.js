@@ -9,7 +9,7 @@ export default function AboutPage(){
         <div>
             <Helmet>
                   <title>About</title>
-                  <meta name="description" content="about Rob Birch" />
+                  <meta name="description" content="About Rob Birch" />
                   <meta property="og:locale" content="en_US" />
                   <meta property="og:type" content="website" />
                   <meta property="og:url" content="https://abettersettlement.com" />
