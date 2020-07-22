@@ -20,10 +20,10 @@ export default function AboutPage(){
                 <h1>About: A Better Settlement</h1>
                 <div className="row content">
                     <div className="col-sm">
-                            <p><img className="mypic rounded-circle float-right" src={rob} alt="Rob" />Rob Birch is a software engineer who was involved in a rear end collusion and his car was totaled in it.
+                            <p><img className="mypic rounded-circle float-right" src={rob} alt="Rob" />Rob Birch is a software engineer who was involved in a rear-end collision and his car was totaled in it.
                                 He negotiated a better settlement with the insurance companies using data similarly provided on this website with the help of <a href="https://attorneyjeffjones.com/">Jeff Jones</a>.
                                 He believes every victim in a car accident should get the treatment and compensation to move on with life. 
-                                Most victims and attorneys, undersettle to their own detriment. 
+                                Most victims and attorneys, under settle to their own detriment. 
                                 To learn more about future products regarding settlement offerings enter your information below. 
                             </p>
                             <div className="col-sm">

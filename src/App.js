@@ -42,6 +42,9 @@ class App extends React.Component {
                 <Link className="nav-link text-light" to="/faq">FAQ</Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link text-light" to="/data">Data</Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link text-light" to="/tutorial">Tutorial</Link>
               </li>
             </ul>
@@ -50,12 +53,12 @@ class App extends React.Component {
             <div className="container clear-top">
               
               <Switch>
-                  <Route path="/about">
-                    <About />
-                  </Route>
+                  <Route exact path="/about" component={About}/>
                   <Route exact path="/faq" component={FAQ}/>
-                  <Route exact path="/data/:id" component={Accident}/>
                   <Route exact path="/data" component={Accidents}/>
+                  {/* <Route exact path="/data/:id" render={(props) => (
+                        <Accident {...props}/>)}/>
+                  {/* <Route exact path="/data" render={(props) => <Accident {...props} title={`Props through render`} />} /> */}
                   <Route exact path="/tutorial" component={Tutorial}/>
                   <Route exact path="/" component={Calculator}/>
                   <Route component={Lost} />
