@@ -1,0 +1,31 @@
+.tablesView {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid rgb(8, 4, 4);
+  width: 80%;
+  td,
+  th {
+    padding: 8px;
+    border: 1px solid rgb(56, 25, 25);
+  }
+  th {
+    position: sticky;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #5aa0e6;
+    color: white;
+  }
+  tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  tr:nth-child(even) {
+    background-color: rgb(190, 190, 190);
+  }
+  tr:hover {
+    background-color: rgb(145, 145, 145);
+  }
+}
