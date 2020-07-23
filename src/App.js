@@ -1,7 +1,6 @@
 import React from "react";
 // import AdSense from 'react-adsense';
 import Helmet from "react-helmet";
-import logo from "./components/media/StandardPack/website_logo_transparent_background.png";
 import "./App.css";
 import About from "./components/About";
 import Calculator from "./components/Calculator";
@@ -12,6 +11,10 @@ import Accidents from "./components/Accidents";
 
 import FAQ from "./components/FAQ";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import Navbar from "sections/Navbar";
+
+import "scss/App.scss";
 
 class App extends React.Component {
   render() {
@@ -26,39 +29,7 @@ class App extends React.Component {
           <meta property="og:description" content="pro se car wreck whiplash" />
         </Helmet>
         <Router>
-          <nav className="navbar  navbar-expand-lg navbar-light bg-dark mb-3">
-            <Link className="nav-link text-light" to="/">
-              <img
-                className="nav-logo"
-                style={{ width: 120, marginTop: -10 }}
-                src={logo}
-                alt="A Better Settlement"
-              />
-            </Link>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/about">
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/faq">
-                  FAQ
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/data">
-                  Data
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/tutorial">
-                  Tutorial
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
+          <Navbar />
           <div className="container clear-top">
             <Switch>
               <Route exact path="/about" component={About} />
