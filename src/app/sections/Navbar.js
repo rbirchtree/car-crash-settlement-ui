@@ -11,7 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 
-import Logo from "components/media/StandardPack/website_logo_transparent_background.png";
+import Logo from "media/StandardPack/website_logo_transparent_background.png";
 
 import "scss/NavbarFooter.scss";
 

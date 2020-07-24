@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { numberFormat } from "./numCurrency";
-import Accident from "./Accident";
+import { numberFormat } from "../../../utils/numCurrency";
+import Accident from "./Components/Accident";
 import { Button } from "reactstrap";
 
 import "scss/Tables.scss";

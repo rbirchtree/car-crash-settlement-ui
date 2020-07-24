@@ -1,18 +1,16 @@
 import React from "react";
 // import AdSense from 'react-adsense';
 import Helmet from "react-helmet";
-import "./App.css";
-import About from "./components/About";
-import Calculator from "./components/Calculator";
-import Lost from "./components/Lost";
-import Tutorial from "./components/Tutorial";
-import Accident from "./components/Accident";
-import Accidents from "./components/Accidents";
+import About from "app/pages/About";
+import Calculator from "app/components/Calculator";
+import Lost from "app/pages/Lost";
+import Tutorial from "app/pages/Tutorial";
+import Accidents from "app/pages/Accidents";
 
-import FAQ from "./components/FAQ";
+import FAQ from "./pages/FAQ";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Navbar from "sections/Navbar";
+import Navbar from "app/sections/Navbar";
 
 import "scss/App.scss";
 
