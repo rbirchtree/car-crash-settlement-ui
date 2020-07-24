@@ -20,11 +20,11 @@ class App extends React.Component {
       <div>
         <Helmet>
           <title>Calculator</title>
-          <meta name="description" content="lost car wreck pro se" />
+          <meta name="description" content="lost car wreck pro se whiplash" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://abettersettlement.com" />
-          <meta property="og:description" content="pro se car wreck whiplash" />
+          <meta property="og:description" content="A Better Settlement pro se car wreck whiplash" />
         </Helmet>
         <Router>
           <Navbar />
