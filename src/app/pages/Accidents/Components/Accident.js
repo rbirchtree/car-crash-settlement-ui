@@ -1,19 +1,19 @@
 import React from "react";
 // settlement estitmate
 const Accident = (props) => {
-    const {dateOfAccident, numOfVisitsToRehab ,timeAtRehabInHours, timeDrivingtoRehabPerAVisitRndTrip, timeWithAtty, timeAtAccident, timeRentingACar, timeDoingRehabPerADay, dateRehabIsFinished, hourlyWageForOccupation ,occupation, zipCodeOfAccident, insurance, age, settlementAmt, notes} = props.val.accident
+    const {dateofaccident, numofvisitstorehab ,timeatrehabinhours, timedrivingtorehabperavisitrndtrip, timewithatty, timeataccident, timerentingacar, timedoingrehabPeraday, daterehabisfinished, hourlywageforoccupation ,occupation, zipcodeofaccident, insurance, age, settlementamt, notes} = props.val.accident
     
     return (
         <ul >
-            <li>{dateRehabIsFinished}</li>
-            <li>{numOfVisitsToRehab}</li>
-            <li>{hourlyWageForOccupation}</li>
+            <li>{daterehabisfinished}</li>
+            <li>{numofvisitstorehab}</li>
+            <li>{hourlywageforoccupation}</li>
             <li>{occupation}</li>
             <li>{age}</li>
             <li>{insurance}</li>
-            <li>{zipCodeOfAccident}</li>
+            <li>{zipcodeofaccident}</li>
             <li>{notes}</li>
-            <li>{settlementAmt}</li>
+            <li>{settlementamt}</li>
             <li>Estimate</li>
         </ul>
     )
