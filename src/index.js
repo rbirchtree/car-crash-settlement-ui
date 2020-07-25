@@ -8,7 +8,10 @@ import { Store } from "./redux/Store";
 
 const rootElement = document.getElementById("root");
 if (rootElement.hasChildNodes()) {
-  hydrate(<App />, rootElement);
+  hydrate(
+    <Provider store={Store}>
+      <App />
+    </Provider>, rootElement);
 } else {
   render(
     <Provider store={Store}>
