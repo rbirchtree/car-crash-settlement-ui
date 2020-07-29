@@ -119,6 +119,11 @@ function Navbar() {
           Tutorial
         </Link>
       </MenuItem>
+      <MenuItem>
+        <Link className="nav-link text-dark" to="/">
+          Calculator
+        </Link>
+      </MenuItem>
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <span>Sign In</span>
@@ -155,6 +160,9 @@ function Navbar() {
             </Link>
             <Link className="nav-link navbar-item" to="/tutorial">
               Tutorial
+            </Link>
+            <Link className="nav-link navbar-item" to="/">
+              Calculator
             </Link>
             <IconButton
               edge="end"

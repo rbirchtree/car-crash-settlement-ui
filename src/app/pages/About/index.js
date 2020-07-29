@@ -24,14 +24,14 @@ export default function AboutPage() {
               alt="Rob"
             />
             Rob Birch is a software engineer who was involved in a rear-end
-            collision and his car was totaled in it. He negotiated a better
-            settlement with the insurance companies using data similarly
-            provided on this website with the help of{" "}
-            <a href="https://attorneyjeffjones.com/">Jeff Jones</a>. He believes
-            every victim in a car accident should get the treatment and
-            compensation to move on with life. Most victims and attorneys, under
-            settle to their own detriment. To learn more about future products
-            regarding settlement offerings enter your information below.
+            collision. His car was totaled. Through an analytical approach, he
+            negotiated a better settlement. The insurance company was presented
+            with data similar to the time and wages analysis on this site. He
+            believes every victim in a car accident should get the treatment and
+            compensation they deserve. Most victims and attorneys settle for
+            less because they lack the analytical tools to recover their losses.
+            To learn more about future products regarding settlement offerings
+            enter your information below.
           </p>
           <div className="col-sm">
             <MyForm />

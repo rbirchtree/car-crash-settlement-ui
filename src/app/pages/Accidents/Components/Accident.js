@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import Moment from 'react-moment';
 import { numberFormat } from "../../../../utils/numCurrency";
 
 // settlement estitmate
 const Accident = (props) => {
+    const {setShow} = props
+    
+    function onButtonClick(){
+      setShow(false);
+    }
+
     const {
       dateofaccident,
       numofvisitstorehab,
@@ -20,14 +26,14 @@ const Accident = (props) => {
       insurance,
       age,
       settlementamt,
-      notes,
+      notes
     } = props.val.accident;
-
+    
     let numsVisits = parseInt(numofvisitstorehab);
     let timeAtR = parseInt(timeatrehabinhours);
     let timeDrivingToR = parseInt(timedrivingtorehabperavisitrndtrip);
     let tAtty = parseInt(timewithatty);
-    let tAccident = parseInt(timerentingacar);
+    let tAccident = parseInt(timeataccident);
     let tRentCar = parseInt(timerentingacar);
     let tDoingRPerADay = parseInt(timedoingrehabperaday);
     let wage = parseInt(hourlywageforoccupation)
@@ -68,6 +74,7 @@ const Accident = (props) => {
                   (timeDrivingToR + timeAtR) * numsVisits))
           )}
         </li>
+        <button onClick={onButtonClick}>Go Back</button>
       </ul>
     );
 }
