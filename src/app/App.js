@@ -8,7 +8,7 @@ import Tutorial from "app/pages/Tutorial";
 import Accidents from "app/pages/Accidents";
 
 import FAQ from "./pages/FAQ";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "app/sections/Navbar";
 
