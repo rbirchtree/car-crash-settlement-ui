@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import { Button } from "reactstrap";
@@ -6,6 +6,7 @@ import { Button } from "reactstrap";
 import "scss/Tables.scss";
 
 const Accidents = () => {
+  
   const [hasError, setErrors] = useState(false);
   const [accidents, setAccidents] = useState([]);
   const [accident, setAccident] = useState({});
@@ -25,7 +26,6 @@ const Accidents = () => {
   }, []);
 
   function clickView(val) {
-    console.log(val);
 
     setShow(!show);
     if (show) {
@@ -75,7 +75,7 @@ const Accidents = () => {
   };
 
   if (show) {
-    return <Accident val={accident} />;
+    return <Accident show={show} setShow={setShow} val={accident} />;
   } else {
     return (
       // if opereator to return accident component and a callback

@@ -60,7 +60,8 @@ class Calculator extends React.Component {
                   <h1>Whiplash Estimate</h1>
                   <p>
                     This is meant to provide an estimate of a reasonable demand
-                    to ask for compensation for a whiplash injury.
+                    to ask for compensation for a whiplash injury. We are here to
+                    accurately identify your lost wages.
                   </p>
                 </div>
               </div>

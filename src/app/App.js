@@ -8,9 +8,10 @@ import Tutorial from "app/pages/Tutorial";
 import Accidents from "app/pages/Accidents";
 
 import FAQ from "./pages/FAQ";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "app/sections/Navbar";
+import Footer from "app/sections/Footer";
 
 import "scss/App.scss";
 
@@ -24,7 +25,10 @@ class App extends React.Component {
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://abettersettlement.com" />
-          <meta property="og:description" content="A Better Settlement pro se car wreck whiplash" />
+          <meta
+            property="og:description"
+            content="A Better Settlement pro se car wreck whiplash"
+          />
         </Helmet>
         <Router>
           <Navbar />
@@ -50,13 +54,7 @@ class App extends React.Component {
               layout='in-article'
               format='fluid'
             />  */}
-
-          <div className="text-center footer">
-            <span className="text-muted">
-              Helping Attorneys & Clients Negoiate a Better Settlement Since
-              2020.
-            </span>
-          </div>
+          <Footer />
         </Router>
       </div>
     );
