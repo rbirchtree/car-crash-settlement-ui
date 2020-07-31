@@ -2,10 +2,11 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="text-center footer">
-      <span className="text-muted">
+    <div className="text-center footer ">
+      <h5 style={{ color: "white" }}>A Better Settlement</h5>
+      <div className="text-muted">
         Helping Attorneys & Clients Negoiate a Better Settlement Since 2020.
-      </span>
+      </div>
     </div>
   );
 }
