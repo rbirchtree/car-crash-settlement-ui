@@ -1,16 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
+import { connect, useSelector, useDispatch } from "react-redux";
+
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import { Button } from "reactstrap";
 
+import ModalComp from "app/components/Modal";
+
 import "scss/Tables.scss";
 
 const Accidents = () => {
-  
+  const user = useSelector((state) => state.userReducer.user);
+
   const [hasError, setErrors] = useState(false);
   const [accidents, setAccidents] = useState([]);
   const [accident, setAccident] = useState({});
   const [filter, setFilter] = useState(false);
+  const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -26,12 +32,16 @@ const Accidents = () => {
   }, []);
 
   function clickView(val) {
-
-    setShow(!show);
-    if (show) {
-      setAccident({});
+    if (user) {
+      setShow(!show);
+      if (show) {
+        setAccident({});
+      } else {
+        setAccident(val);
+      }
     } else {
-      setAccident(val);
+      setOpen(true);
+      console.log("you must be logged in to see this");
     }
   }
 
@@ -78,25 +88,34 @@ const Accidents = () => {
     return <Accident show={show} setShow={setShow} val={accident} />;
   } else {
     return (
-      // if opereator to return accident component and a callback
-      <div style={{ textAlign: "center" }}>
-        <h1>Car Crash Data</h1>
-        <div style={{ overflow: "auto" }}>
-          <table className="tablesView">
-            <thead>
-              <tr>
-                {HeaderItem("zipcodeofaccident", "ZIP Code")}
-                {HeaderItem("settlementamt", "Settlement")}
-                {HeaderItem("numofvisitstorehab", "Visits to Rehab")}
-                {HeaderItem("notes", "Notes")}
-                {HeaderItem("notes", "Details")}
-              </tr>
-            </thead>
-            <tbody className="text-center">{TableBody()}</tbody>
-          </table>
+      <>
+        <ModalComp
+          open={open}
+          handleClose={() => {
+            setOpen(false);
+          }}
+          children={<div>You must be signed in to see this page</div>}
+        />
+        {/* if opereator to return accident component and a callback */}
+        <div style={{ textAlign: "center" }}>
+          <h1>Car Crash Data</h1>
+          <div style={{ overflow: "auto" }}>
+            <table className="tablesView">
+              <thead>
+                <tr>
+                  {HeaderItem("zipcodeofaccident", "ZIP Code")}
+                  {HeaderItem("settlementamt", "Settlement")}
+                  {HeaderItem("numofvisitstorehab", "Visits to Rehab")}
+                  {HeaderItem("notes", "Notes")}
+                  {HeaderItem("notes", "Details")}
+                </tr>
+              </thead>
+              <tbody className="text-center">{TableBody()}</tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 };
-export default Accidents;
+export default connect()(Accidents);

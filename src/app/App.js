@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import AdSense from 'react-adsense';
 import { connect, useSelector, useDispatch } from "react-redux";
 
@@ -22,9 +22,14 @@ import firebase from "config/firebase";
 import "scss/App.scss";
 
 function App() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    (async function IIFE() {
+      await authListener();
+    })();
+  }, [user]);
 
   async function authListener() {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -51,6 +56,17 @@ function App() {
       </Helmet>
       <Router>
         <Navbar />
+        {/* Welcome message is only checking authentication and can be deleted later */}
+        <h3 style={{ textAlign: "center" }}>
+          {user ? (
+            <div>
+              Welcome {user.displayName}
+              <br />
+            </div>
+          ) : (
+            <></>
+          )}
+        </h3>
         <div className="container clear-top">
           <Switch>
             <Route exact path="/about" component={About} />
