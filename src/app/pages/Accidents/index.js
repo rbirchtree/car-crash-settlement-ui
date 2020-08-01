@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
-
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import { Button } from "reactstrap";
@@ -84,6 +83,23 @@ const Accidents = () => {
     ));
   };
 
+  const ModalBody = () => {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <h4 style={{ color: "red" }}>Error:</h4>
+        <div>You must be signed in to see this page</div>
+        <Button
+          color="danger"
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          Close
+        </Button>
+      </div>
+    );
+  };
+
   if (show) {
     return <Accident show={show} setShow={setShow} val={accident} />;
   } else {
@@ -94,7 +110,7 @@ const Accidents = () => {
           handleClose={() => {
             setOpen(false);
           }}
-          children={<div>You must be signed in to see this page</div>}
+          children={ModalBody()}
         />
         {/* if opereator to return accident component and a callback */}
         <div style={{ textAlign: "center" }}>
