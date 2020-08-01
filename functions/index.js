@@ -6,7 +6,7 @@ const {
   createUser,
   sendPasswordResetEmail,
   addUserToDB,
-} = require("./CloudFunctions/userFunctions");
+} = require("./cloudFunctions/userFunctions");
 
 module.exports = {
   createUser: functions.https.onCall(createUser),
