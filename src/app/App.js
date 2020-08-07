@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 
 import Helmet from "react-helmet";
+import ProtectedRoute from "app/components/ProtectedRoute";
+
 import About from "app/pages/About";
 import Calculator from "app/components/Calculator";
 import Lost from "app/pages/Lost";
@@ -72,6 +74,7 @@ function App() {
             <Route exact path="/about" component={About} />
             <Route exact path="/faq" component={FAQ} />
             <Route exact path="/data" component={Accidents} />
+            <ProtectedRoute exact path="/data/:id" component={Accidents} />
             {/* <Route exact path="/data/:id" render={(props) => (
                         <Accident {...props}/>)}/>
                   {/* <Route exact path="/data" render={(props) => <Accident {...props} title={`Props through render`} />} /> */}
