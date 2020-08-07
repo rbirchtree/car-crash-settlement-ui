@@ -97,7 +97,7 @@ class Calculator extends React.Component {
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="numOfVisitsToRehab">
-                    Number of Visits to PT
+                    Number of Visits to Physical Therapy
                   </label>
                   <Field
                     type="number"
@@ -108,7 +108,7 @@ class Calculator extends React.Component {
                 </div>
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="timeAtRehabInHours">
-                    Time at PT Per a Visit<sup>*</sup>
+                    Time at PT Per a Visit in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
@@ -121,7 +121,7 @@ class Calculator extends React.Component {
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">
-                    Total time going to PT/Visit<sup>*</sup>
+                    Total Time Going to PT/Visit in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
@@ -132,7 +132,7 @@ class Calculator extends React.Component {
                 </div>
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="timeDoingRehabPerADay">
-                    Time doing PT at Home/Day <sup>*</sup>
+                    Time Doing PT at Home/Day in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
@@ -145,7 +145,7 @@ class Calculator extends React.Component {
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="timeWithAtty">
-                    Time with Attorney<sup>*</sup>
+                    Time with Attorney in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
@@ -156,7 +156,7 @@ class Calculator extends React.Component {
                 </div>
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="timeAtAccident">
-                    Time at Accident<sup>*</sup>
+                    Time at Accident in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
@@ -169,7 +169,7 @@ class Calculator extends React.Component {
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="timeRentingACar">
-                    Time Renting a Car<sup>*</sup>
+                    Time Renting a Car in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
@@ -180,7 +180,7 @@ class Calculator extends React.Component {
                 </div>
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="hourlyWageForOccupation">
-                    Wage for Occupation<sup>*</sup>
+                    Hourly Income for Occupation<sup>*</sup>
                   </label>
                   <Field
                     type="number"
