@@ -4,6 +4,8 @@ import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import { Button } from "reactstrap";
 
+import DB from "dbFunctions/directConnect/accidentData";
+
 import ModalComp from "app/components/Modal";
 
 import "scss/Tables.scss";
@@ -19,15 +21,20 @@ const Accidents = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(process.env.REACT_APP_URL);
-      res
-        .json()
-        .then((res) => setAccidents(res))
-        .catch((err) => setErrors(err));
-    }
+    // async function fetchData() {
+    //   const res = await fetch(process.env.REACT_APP_URL);
+    //   res
+    //     .json()
+    //     .then((res) => setAccidents(res))
+    //     .catch((err) => setErrors(err));
+    // }
+    // fetchData();
 
-    fetchData();
+    (async function IIFE() {
+      const res = await DB.getAllData();
+      console.log("res", res);
+      setAccident(res);
+    })();
   }, []);
 
   function clickView(val) {
