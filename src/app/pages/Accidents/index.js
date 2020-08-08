@@ -14,8 +14,9 @@ const Accidents = () => {
   const user = useSelector((state) => state.userReducer.user);
 
   const [hasError, setErrors] = useState(false);
-  const [accidents, setAccidents] = useState([]);
   const [accident, setAccident] = useState({});
+  const [accidents, setAccidents] = useState([]);
+  const [privData, setPrivData] = useState([]);
   const [filter, setFilter] = useState(false);
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
@@ -31,19 +32,25 @@ const Accidents = () => {
     // fetchData();
 
     (async function IIFE() {
-      const res = await DB.getAllData();
-      console.log("res", res);
-      setAccident(res);
+      const privData = await DB.getPrivateData();
+      const pubData = await DB.getPublicData();
+      console.log("pubData", pubData);
+      console.log("private Data", privData);
+      console.log("privData", privData);
+      setPrivData(privData);
+      setAccidents(pubData);
     })();
   }, []);
 
-  function clickView(val) {
+  function clickView(id) {
+    let accident = privData[id];
+
     if (user) {
       setShow(!show);
       if (show) {
         setAccident({});
       } else {
-        setAccident(val);
+        setAccident(accident);
       }
     } else {
       setOpen(true);
@@ -82,7 +89,7 @@ const Accidents = () => {
         <td>{accident.numofvisitstorehab}</td>
         <td className="text-left">{accident.notes}</td>
         <td>
-          <Button color="info" onClick={() => clickView({ accident })}>
+          <Button color="info" onClick={() => clickView(accident.id)}>
             View
           </Button>
         </td>

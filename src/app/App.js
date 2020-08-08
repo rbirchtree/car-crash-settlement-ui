@@ -11,6 +11,8 @@ import Lost from "app/pages/Lost";
 import Tutorial from "app/pages/Tutorial";
 import Accidents from "app/pages/Accidents";
 
+import uploadData from "app/misc/uploadData";
+
 import FAQ from "./pages/FAQ";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -71,7 +73,7 @@ function App() {
         </h3>
         <div className="container clear-top">
           <Switch>
-            <Route exact path="/about" component={About} />
+            <ProtectedRoute exact path="/about" component={About} />
             <Route exact path="/faq" component={FAQ} />
             <Route exact path="/data" component={Accidents} />
             <ProtectedRoute exact path="/data/:id" component={Accidents} />
@@ -80,6 +82,7 @@ function App() {
                   {/* <Route exact path="/data" render={(props) => <Accident {...props} title={`Props through render`} />} /> */}
             <Route exact path="/tutorial" component={Tutorial} />
             <Route exact path="/" component={Calculator} />
+            <Route exact path="/testfeatures" component={uploadData} />
             <Route component={Lost} />
           </Switch>
           <div class="push"></div>

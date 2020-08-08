@@ -27,7 +27,7 @@ const Accident = (props) => {
     age,
     settlementamt,
     notes,
-  } = props.val.accident;
+  } = props.val;
 
   let numsVisits = parseInt(numofvisitstorehab);
   let timeAtR = parseInt(timeatrehabinhours);
