@@ -3,6 +3,7 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import { Button } from "reactstrap";
+import { useHistory } from "react-router-dom";
 
 import DB from "dbFunctions/directConnect/accidentData";
 
@@ -12,6 +13,7 @@ import "scss/Tables.scss";
 
 const Accidents = () => {
   const user = useSelector((state) => state.userReducer.user);
+  const history = useHistory();
 
   const [hasError, setErrors] = useState(false);
   const [accident, setAccident] = useState({});
@@ -129,6 +131,20 @@ const Accidents = () => {
         {/* if opereator to return accident component and a callback */}
         <div style={{ textAlign: "center" }}>
           <h1>Car Crash Data</h1>
+          <button
+            onClick={() => {
+              history.push(`submitclaim`);
+            }}
+          >
+            Upload
+          </button>
+          <button
+            onClick={() => {
+              history.push(`submitclaimformik`);
+            }}
+          >
+            Upload Formik
+          </button>
           <div style={{ overflow: "auto" }}>
             <table className="tablesView">
               <thead>

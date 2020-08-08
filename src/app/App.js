@@ -10,6 +10,8 @@ import Calculator from "app/components/Calculator";
 import Lost from "app/pages/Lost";
 import Tutorial from "app/pages/Tutorial";
 import Accidents from "app/pages/Accidents";
+import SubmitClaim from "app/pages/SubmitClaim";
+import SubmitClaimFormik from "app/pages/SubmitClaim/Formik";
 
 import uploadData from "app/misc/uploadData";
 
@@ -82,6 +84,12 @@ function App() {
                   {/* <Route exact path="/data" render={(props) => <Accident {...props} title={`Props through render`} />} /> */}
             <Route exact path="/tutorial" component={Tutorial} />
             <Route exact path="/" component={Calculator} />
+            <Route exact path="/submitclaim" component={SubmitClaim} />
+            <Route
+              exact
+              path="/submitclaimformik"
+              component={SubmitClaimFormik}
+            />
             <Route exact path="/testfeatures" component={uploadData} />
             <Route component={Lost} />
           </Switch>
