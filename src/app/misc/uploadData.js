@@ -23,7 +23,6 @@ export default function uploadData() {
         .doc(id)
         .set(pubData)
         .then(function () {
-          console.log("Document successfully written!");
           let data = { ...val };
           data.id = id;
           dataRef.doc(`${id}/data/private`).set(val);

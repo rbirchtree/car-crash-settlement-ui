@@ -51,8 +51,33 @@ const getDataById = (id) => {
     });
 };
 
+const addData = (data, userId) => {
+  let { zipCodeOfAccident, settlementAmt, numOfVisitsToRehab, notes } = data;
+
+  let pubData = {
+    id: userId,
+    zipCodeOfAccident,
+    settlementAmt,
+    numOfVisitsToRehab,
+    notes,
+  };
+
+  dataRef
+    .doc(userId)
+    .set(pubData)
+    .then(function () {
+      let privData = { ...data };
+      privData.id = userId;
+      dataRef.doc(`${userId}/data/private`).set(privData);
+    })
+    .catch(function (error) {
+      console.error("Error writing document: ", error);
+    });
+};
+
 export default {
   getPublicData,
   getPrivateData,
   getDataById,
+  addData,
 };

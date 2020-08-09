@@ -94,6 +94,18 @@ const Accidents = () => {
           <Button color="info" onClick={() => clickView(accident.id)}>
             View
           </Button>
+          {accident.id === user.uid ? (
+            <Button
+              color="success"
+              onClick={() => {
+                history.push(`submitclaim`);
+              }}
+            >
+              Edit
+            </Button>
+          ) : (
+            <></>
+          )}
         </td>
       </tr>
     ));
@@ -131,20 +143,19 @@ const Accidents = () => {
         {/* if opereator to return accident component and a callback */}
         <div style={{ textAlign: "center" }}>
           <h1>Car Crash Data</h1>
-          <button
-            onClick={() => {
-              history.push(`submitclaim`);
-            }}
-          >
-            Upload
-          </button>
-          <button
-            onClick={() => {
-              history.push(`submitclaimformik`);
-            }}
-          >
-            Upload Formik
-          </button>
+          {user ? (
+            <Button
+              style={{ margin: "10px" }}
+              color="primary"
+              onClick={() => {
+                history.push(`submitclaim`);
+              }}
+            >
+              Upload Your Settlment Claim
+            </Button>
+          ) : (
+            <></>
+          )}
           <div style={{ overflow: "auto" }}>
             <table className="tablesView">
               <thead>
