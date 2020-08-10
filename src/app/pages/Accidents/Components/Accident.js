@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Moment from "react-moment";
-import { numberFormat } from "../../../../utils/numCurrency";
+import { numberFormat } from "utils/numCurrency";
 
 // settlement estitmate
 const Accident = (props) => {

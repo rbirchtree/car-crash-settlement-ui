@@ -4,7 +4,6 @@ import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import UploadClaimBTN from "./Components/UploadClaimBTN";
 import { Button } from "reactstrap";
-import { useHistory } from "react-router-dom";
 
 import DB from "dbFunctions/directConnect/accidentData";
 
@@ -151,12 +150,13 @@ const Accidents = () => {
           <h1>Car Crash Data</h1>
 
           {user ? (
-            <UploadClaimBTN type="primary" text="Upload Claim Data" />
-          ) : (
-            <></>
-          )}
-          {user && accidents[user.uid] ? (
-            <UploadClaimBTN text="Edit Claim Data" />
+            <>
+              {accidents[user.uid] ? (
+                <UploadClaimBTN text="Edit Claim Data" />
+              ) : (
+                <UploadClaimBTN type="primary" text="Upload Claim Data" />
+              )}
+            </>
           ) : (
             <></>
           )}

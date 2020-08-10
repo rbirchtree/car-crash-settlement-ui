@@ -31,6 +31,7 @@ const getPrivateData = () => {
         data[doc.id] = privDoc.data();
         // data.push(privDoc.data());
       });
+
       return data;
     })
     .catch((error) => {
@@ -40,7 +41,7 @@ const getPrivateData = () => {
 
 const getDataById = (id) => {
   return dataRef
-    .doc(id)
+    .doc(`${id}/data/private`)
     .get()
     .then((doc) => {
       return doc.data();

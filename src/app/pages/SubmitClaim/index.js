@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import { Button } from "reactstrap";
 import DatePicker from "react-datepicker";
@@ -10,6 +11,7 @@ import Helmet from "react-helmet";
 import DB from "dbFunctions/directConnect/accidentData";
 
 const SubmitClaim = ({ data }) => {
+  const history = useHistory();
   const user = useSelector((state) => state.userReducer.user);
   const [initVals, setInitVals] = useState({
     email: "john.doe@gmail.com",
@@ -22,20 +24,28 @@ const SubmitClaim = ({ data }) => {
     attorneyTime: 1,
     accidentTime: 2,
     carRentalTime: 1,
-    zipCodeOfAccident: 0,
+    zipCodeOfAccident: 12345,
     rehabTimePerDay: 1,
     rehabEndDate: new Date(),
     hourlyWage: 40,
     age: 42,
     settlementAmt: 0,
-    notes: 0,
+    notes: "",
   });
 
   useEffect(() => {
-    if (data) {
-      setInitVals(data);
-    }
-  }, []);
+    (async function IIFE() {
+      if (user) {
+        let data = await DB.getDataById(user.uid);
+        if (data) {
+          console.log("data", data);
+          data.accidentDate = data.accidentDate.toDate();
+          data.rehabEndDate = data.rehabEndDate.toDate();
+          setInitVals(data);
+        }
+      }
+    })();
+  }, [user]);
 
   return (
     <div className="container">
@@ -54,11 +64,13 @@ const SubmitClaim = ({ data }) => {
         />
       </Helmet>
       <Formik
+        enableReinitialize={true}
         initialValues={initVals}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
           DB.addData(values, user.uid);
           setSubmitting(false);
+          history.push("data");
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
@@ -207,12 +219,12 @@ const SubmitClaim = ({ data }) => {
                 />
               </div>
               <div className="form-group ml-2 col-sm-3">
-                <label htmlFor="settlmentamt">Settlement Amount</label>
+                <label htmlFor="settlementAmt">Settlement Amount</label>
                 <Field
                   type="number"
                   className="form-control"
-                  name="settlmentamt"
-                  value={values.settlmentamt}
+                  name="settlementAmt"
+                  value={values.settlementAmt}
                 />
               </div>
             </div>
