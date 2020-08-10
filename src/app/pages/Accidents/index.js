@@ -33,13 +33,12 @@ const Accidents = () => {
     // fetchData();
 
     (async function IIFE() {
-      const privData = await DB.getPrivateData();
       const pubData = await DB.getPublicData();
-      console.log("pubData", pubData);
-      console.log("private Data", privData);
-      console.log("privData", privData);
-      setPrivData(privData);
       setAccidents(pubData);
+      if (user) {
+        const privData = await DB.getPrivateData();
+        setPrivData(privData);
+      }
     })();
   }, []);
 
