@@ -7,11 +7,11 @@ const getPublicData = () => {
     .get()
     .then(function (querySnapshot) {
       //! More than likely will need to be returned as an object
-      // let data = {};
-      let data = [];
+      let data = {};
+      // let data = [];
       querySnapshot.forEach(function (doc) {
-        // data[doc.id] = doc.data();
-        data.push(doc.data());
+        data[doc.id] = doc.data();
+        // data.push(doc.data());
       });
       return data;
     })

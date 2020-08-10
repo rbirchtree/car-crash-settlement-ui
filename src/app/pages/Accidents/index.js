@@ -14,7 +14,6 @@ import "scss/Tables.scss";
 
 const Accidents = () => {
   const user = useSelector((state) => state.userReducer.user);
-  const history = useHistory();
 
   const [hasError, setErrors] = useState(false);
   const [accident, setAccident] = useState({});
@@ -62,18 +61,27 @@ const Accidents = () => {
   }
 
   function clickSort(val) {
-    setFilter(!filter);
-    let newArr;
-    if (filter) {
-      newArr = accidents.sort((a, b) => {
-        return a[val] - b[val];
-      });
-    } else {
-      newArr = accidents.sort((a, b) => {
-        return b[val] - a[val];
-      });
+    const sortable = [];
+    for (let key in accidents) {
+      sortable.push([key, accidents[key][val]]);
     }
-    setAccidents([...newArr]);
+
+    if (typeof sortable[0][1] === "string") {
+      sortable.sort((a, b) =>
+        a[1].toUpperCase().localeCompare(b[1].toUpperCase())
+      );
+    } else {
+      sortable.sort((a, b) => a[1] - b[1]);
+    }
+
+    if (!filter) sortable.reverse();
+
+    const objSorted = {};
+    sortable.forEach((item) => {
+      objSorted[item[0]] = accidents[item[0]];
+    });
+    setAccidents(objSorted);
+    setFilter(!filter);
   }
 
   const HeaderItem = (param, text) => {
@@ -85,24 +93,28 @@ const Accidents = () => {
   };
 
   const TableBody = () => {
-    return accidents.map((accident, index) => (
-      <tr key={index}>
-        <td>{accident.zipCodeOfAccident}</td>
-        <td>{numberFormat(accident.settlementAmt)}</td>
-        <td>{accident.visitsToRehab}</td>
-        <td className="text-left">{accident.notes}</td>
-        <td>
-          <Button color="info" onClick={() => clickView(accident.id)}>
-            View
-          </Button>
-          {user && accident.id === user.uid ? (
-            <UploadClaimBTN text="Edit" />
-          ) : (
-            <></>
-          )}
-        </td>
-      </tr>
-    ));
+    let keys = Object.keys(accidents);
+    return keys.map((key, index) => {
+      let accident = accidents[key];
+      return (
+        <tr key={index}>
+          <td>{accident.zipCodeOfAccident}</td>
+          <td>{numberFormat(accident.settlementAmt)}</td>
+          <td>{accident.visitsToRehab}</td>
+          <td className="text-left">{accident.notes}</td>
+          <td>
+            <Button color="info" onClick={() => clickView(accident.id)}>
+              View
+            </Button>
+            {user && accident.id === user.uid ? (
+              <UploadClaimBTN text="Edit" />
+            ) : (
+              <></>
+            )}
+          </td>
+        </tr>
+      );
+    });
   };
 
   const ModalBody = () => {
@@ -137,6 +149,7 @@ const Accidents = () => {
         {/* if opereator to return accident component and a callback */}
         <div style={{ textAlign: "center" }}>
           <h1>Car Crash Data</h1>
+
           {user ? (
             <UploadClaimBTN type="primary" text="Upload Claim Data" />
           ) : (
@@ -156,7 +169,7 @@ const Accidents = () => {
                   {HeaderItem("settlementAmt", "Settlement")}
                   {HeaderItem("visitsToRehab", "Visits to Rehab")}
                   {HeaderItem("notes", "Notes")}
-                  {HeaderItem("notes", "Details")}
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody className="text-center">{TableBody()}</tbody>
