@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -170,10 +169,10 @@ export default function SignUp(props) {
             </Grid>
           </Grid>
           {isLoading ? (
-            <>
+            <div style={{ textAlign: "center" }}>
               <div style={{ color: "red" }}>This may take a moment...</div>
               <CircularProgress />
-            </>
+            </div>
           ) : (
             <Button
               type="submit"

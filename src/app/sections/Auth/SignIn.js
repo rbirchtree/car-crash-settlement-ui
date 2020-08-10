@@ -59,6 +59,7 @@ export default function SignIn(props) {
       .signInWithEmailAndPassword(values.email, values.password)
       .then((user) => {
         console.log(user);
+        props.handleClose();
       })
       .catch((error) => {
         console.log(error);

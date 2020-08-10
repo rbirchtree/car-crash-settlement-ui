@@ -58,7 +58,11 @@ function AuthModal({ open, handleClose, children }) {
       <div style={modalStyle} className={classes.paper}>
         <>
           {section === "login" ? (
-            <SignIn setSignup={setSignup} setPassReset={setPassReset} />
+            <SignIn
+              setSignup={setSignup}
+              setPassReset={setPassReset}
+              handleClose={handleClose}
+            />
           ) : (
             <></>
           )}

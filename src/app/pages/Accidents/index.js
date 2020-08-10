@@ -2,7 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
+import UploadClaimBTN from "./Components/UploadClaimBTN";
 import { Button } from "reactstrap";
+
+import DB from "dbFunctions/directConnect/accidentData";
 
 import ModalComp from "app/components/Modal";
 
@@ -12,31 +15,43 @@ const Accidents = () => {
   const user = useSelector((state) => state.userReducer.user);
 
   const [hasError, setErrors] = useState(false);
-  const [accidents, setAccidents] = useState([]);
   const [accident, setAccident] = useState({});
+  const [accidents, setAccidents] = useState([]);
+  const [privData, setPrivData] = useState([]);
   const [filter, setFilter] = useState(false);
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(process.env.REACT_APP_URL);
-      res
-        .json()
-        .then((res) => setAccidents(res))
-        .catch((err) => setErrors(err));
-    }
+    // async function fetchData() {
+    //   const res = await fetch(process.env.REACT_APP_URL);
+    //   res
+    //     .json()
+    //     .then((res) => setAccidents(res))
+    //     .catch((err) => setErrors(err));
+    // }
+    // fetchData();
 
-    fetchData();
+    (async function IIFE() {
+      const privData = await DB.getPrivateData();
+      const pubData = await DB.getPublicData();
+      console.log("pubData", pubData);
+      console.log("private Data", privData);
+      console.log("privData", privData);
+      setPrivData(privData);
+      setAccidents(pubData);
+    })();
   }, []);
 
-  function clickView(val) {
+  function clickView(id) {
+    let accident = privData[id];
+
     if (user) {
       setShow(!show);
       if (show) {
         setAccident({});
       } else {
-        setAccident(val);
+        setAccident(accident);
       }
     } else {
       setOpen(true);
@@ -45,18 +60,27 @@ const Accidents = () => {
   }
 
   function clickSort(val) {
-    setFilter(!filter);
-    let newArr;
-    if (filter) {
-      newArr = accidents.sort((a, b) => {
-        return a[val] - b[val];
-      });
-    } else {
-      newArr = accidents.sort((a, b) => {
-        return b[val] - a[val];
-      });
+    const sortable = [];
+    for (let key in accidents) {
+      sortable.push([key, accidents[key][val]]);
     }
-    setAccidents([...newArr]);
+
+    if (typeof sortable[0][1] === "string") {
+      sortable.sort((a, b) =>
+        a[1].toUpperCase().localeCompare(b[1].toUpperCase())
+      );
+    } else {
+      sortable.sort((a, b) => a[1] - b[1]);
+    }
+
+    if (!filter) sortable.reverse();
+
+    const objSorted = {};
+    sortable.forEach((item) => {
+      objSorted[item[0]] = accidents[item[0]];
+    });
+    setAccidents(objSorted);
+    setFilter(!filter);
   }
 
   const HeaderItem = (param, text) => {
@@ -68,19 +92,28 @@ const Accidents = () => {
   };
 
   const TableBody = () => {
-    return accidents.map((accident, index) => (
-      <tr key={index}>
-        <td>{accident.zipcodeofaccident}</td>
-        <td>{numberFormat(accident.settlementamt)}</td>
-        <td>{accident.numofvisitstorehab}</td>
-        <td className="text-left">{accident.notes}</td>
-        <td>
-          <Button color="info" onClick={() => clickView({ accident })}>
-            View
-          </Button>
-        </td>
-      </tr>
-    ));
+    let keys = Object.keys(accidents);
+    return keys.map((key, index) => {
+      let accident = accidents[key];
+      return (
+        <tr key={index}>
+          <td>{accident.zipCodeOfAccident}</td>
+          <td>{numberFormat(accident.settlementAmt)}</td>
+          <td>{accident.visitsToRehab}</td>
+          <td className="text-left">{accident.notes}</td>
+          <td>
+            <Button color="info" onClick={() => clickView(accident.id)}>
+              View
+            </Button>
+            {user && accident.id === user.uid ? (
+              <UploadClaimBTN text="Edit" />
+            ) : (
+              <></>
+            )}
+          </td>
+        </tr>
+      );
+    });
   };
 
   const ModalBody = () => {
@@ -115,15 +148,28 @@ const Accidents = () => {
         {/* if opereator to return accident component and a callback */}
         <div style={{ textAlign: "center" }}>
           <h1>Car Crash Data</h1>
+
+          {user ? (
+            <>
+              {accidents[user.uid] ? (
+                <UploadClaimBTN text="Edit Claim Data" />
+              ) : (
+                <UploadClaimBTN type="primary" text="Upload Claim Data" />
+              )}
+            </>
+          ) : (
+            <></>
+          )}
+
           <div style={{ overflow: "auto" }}>
             <table className="tablesView">
               <thead>
                 <tr>
-                  {HeaderItem("zipcodeofaccident", "ZIP Code")}
-                  {HeaderItem("settlementamt", "Settlement")}
-                  {HeaderItem("numofvisitstorehab", "Visits to Rehab")}
+                  {HeaderItem("zipCodeOfAccident", "ZIP Code")}
+                  {HeaderItem("settlementAmt", "Settlement")}
+                  {HeaderItem("visitsToRehab", "Visits to Rehab")}
                   {HeaderItem("notes", "Notes")}
-                  {HeaderItem("notes", "Details")}
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody className="text-center">{TableBody()}</tbody>
