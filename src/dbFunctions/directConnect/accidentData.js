@@ -52,13 +52,13 @@ const getDataById = (id) => {
 };
 
 const addData = (data, userId) => {
-  let { zipCodeOfAccident, settlementAmt, numOfVisitsToRehab, notes } = data;
+  let { zipCodeOfAccident, settlementAmt, visitsToRehab, notes } = data;
 
   let pubData = {
     id: userId,
     zipCodeOfAccident,
     settlementAmt,
-    numOfVisitsToRehab,
+    visitsToRehab,
     notes,
   };
 

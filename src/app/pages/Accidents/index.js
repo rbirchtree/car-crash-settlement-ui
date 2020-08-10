@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
+import UploadClaimBTN from "./Components/UploadClaimBTN";
 import { Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
@@ -86,23 +87,16 @@ const Accidents = () => {
   const TableBody = () => {
     return accidents.map((accident, index) => (
       <tr key={index}>
-        <td>{accident.zipcodeofaccident}</td>
-        <td>{numberFormat(accident.settlementamt)}</td>
-        <td>{accident.numofvisitstorehab}</td>
+        <td>{accident.zipCodeOfAccident}</td>
+        <td>{numberFormat(accident.settlementAmt)}</td>
+        <td>{accident.visitsToRehab}</td>
         <td className="text-left">{accident.notes}</td>
         <td>
           <Button color="info" onClick={() => clickView(accident.id)}>
             View
           </Button>
-          {accident.id === user.uid ? (
-            <Button
-              color="success"
-              onClick={() => {
-                history.push(`submitclaim`);
-              }}
-            >
-              Edit
-            </Button>
+          {user && accident.id === user.uid ? (
+            <UploadClaimBTN text="Edit" />
           ) : (
             <></>
           )}
@@ -144,25 +138,23 @@ const Accidents = () => {
         <div style={{ textAlign: "center" }}>
           <h1>Car Crash Data</h1>
           {user ? (
-            <Button
-              style={{ margin: "10px" }}
-              color="primary"
-              onClick={() => {
-                history.push(`submitclaim`);
-              }}
-            >
-              Upload Your Settlment Claim
-            </Button>
+            <UploadClaimBTN type="primary" text="Upload Claim Data" />
           ) : (
             <></>
           )}
+          {user && accidents[user.uid] ? (
+            <UploadClaimBTN text="Edit Claim Data" />
+          ) : (
+            <></>
+          )}
+
           <div style={{ overflow: "auto" }}>
             <table className="tablesView">
               <thead>
                 <tr>
-                  {HeaderItem("zipcodeofaccident", "ZIP Code")}
-                  {HeaderItem("settlementamt", "Settlement")}
-                  {HeaderItem("numofvisitstorehab", "Visits to Rehab")}
+                  {HeaderItem("zipCodeOfAccident", "ZIP Code")}
+                  {HeaderItem("settlementAmt", "Settlement")}
+                  {HeaderItem("visitsToRehab", "Visits to Rehab")}
                   {HeaderItem("notes", "Notes")}
                   {HeaderItem("notes", "Details")}
                 </tr>

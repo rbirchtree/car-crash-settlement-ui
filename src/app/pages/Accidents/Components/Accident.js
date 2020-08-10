@@ -11,56 +11,56 @@ const Accident = (props) => {
   }
 
   const {
-    dateofaccident,
-    numofvisitstorehab,
-    timeatrehabinhours,
-    timedrivingtorehabperavisitrndtrip,
-    timewithatty,
-    timeataccident,
-    timerentingacar,
-    timedoingrehabperaday,
-    daterehabisfinished,
-    hourlywageforoccupation,
+    accidentDate,
+    accidentTime,
+    visitsToRehab,
+    timeAtRehabinhours,
+    rehabTravelTime,
+    attorneyTime,
+    carRentalTime,
+    rehabTimePerDay,
+    rehabEndDate,
+    hourlyWage,
     occupation,
-    zipcodeofaccident,
+    zipCodeOfAccident,
     insurance,
     age,
-    settlementamt,
+    settlementAmt,
     notes,
   } = props.val;
 
-  let numsVisits = parseInt(numofvisitstorehab);
-  let timeAtR = parseInt(timeatrehabinhours);
-  let timeDrivingToR = parseInt(timedrivingtorehabperavisitrndtrip);
-  let tAtty = parseInt(timewithatty);
-  let tAccident = parseInt(timeataccident);
-  let tRentCar = parseInt(timerentingacar);
-  let tDoingRPerADay = parseInt(timedoingrehabperaday);
-  let wage = parseInt(hourlywageforoccupation);
+  let numsVisits = parseInt(visitsToRehab);
+  let timeAtR = parseInt(timeAtRehabinhours);
+  let timeDrivingToR = parseInt(rehabTravelTime);
+  let tAtty = parseInt(attorneyTime);
+  let tAccident = parseInt(accidentTime);
+  let tRentCar = parseInt(carRentalTime);
+  let tDoingRPerADay = parseInt(rehabTimePerDay);
+  let wage = parseInt(hourlyWage);
   let userAge = parseInt(age);
 
-  const doa = new Date(dateofaccident);
-  const drif = new Date(daterehabisfinished);
+  const doa = new Date(accidentDate);
+  const drif = new Date(rehabEndDate);
   const totalDaysInRehab = (drif - doa) / 86400000;
   console.log(totalDaysInRehab);
   return (
     <ul>
       <li>
         Date of Accident:
-        <Moment format="MM/DD/YYYY">{dateofaccident}</Moment>
+        <Moment format="MM/DD/YYYY">{accidentDate}</Moment>
       </li>
       <li>
         Date Rehab is Finished:
-        <Moment format="MM/DD/YYYY">{daterehabisfinished}</Moment>
+        <Moment format="MM/DD/YYYY">{rehabEndDate}</Moment>
       </li>
-      <li>Number of Visits to Rehab: {numofvisitstorehab}</li>
-      <li>Hourly Wage for Occupation: ${hourlywageforoccupation}</li>
+      <li>Number of Visits to Rehab: {visitsToRehab}</li>
+      <li>Hourly Wage for Occupation: ${hourlyWage}</li>
       <li>Occupation: {occupation}</li>
       <li>Age: {age}</li>
       <li>Insurance: {insurance}</li>
-      <li>Zip Code of Accident: {zipcodeofaccident}</li>
+      <li>Zip Code of Accident: {zipCodeOfAccident}</li>
       <li>Notes: {notes}</li>
-      <li>Gross Settlement Amount: {numberFormat(settlementamt)}</li>
+      <li>Gross Settlement Amount: {numberFormat(settlementAmt)}</li>
       <li>
         Estimate Using Formula:
         {numberFormat(

@@ -29,16 +29,16 @@ class Calculator extends React.Component {
             email: "john.doe@gmail.com",
             firstName: "John",
             lastName: "Doe",
-            dateOfAccident: new Date(),
-            numOfVisitsToRehab: 60,
+            accidentDate: new Date(),
+            visitsToRehab: 60,
             timeAtRehabInHours: 1,
-            timeDrivingtoRehabPerAVisitRndTrip: 1,
-            timeWithAtty: 1,
-            timeAtAccident: 2,
-            timeRentingACar: 1,
-            timeDoingRehabPerADay: 1,
-            dateRehabIsFinished: new Date(),
-            hourlyWageForOccupation: 40,
+            rehabTravelTime: 1,
+            attorneyTime: 1,
+            accidentTime: 2,
+            carRentalTime: 1,
+            rehabTimePerDay: 1,
+            rehabEndDate: new Date(),
+            hourlyWage: 40,
             age: 42,
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -60,50 +60,48 @@ class Calculator extends React.Component {
                   <h1>Whiplash Estimate</h1>
                   <p>
                     This is meant to provide an estimate of a reasonable demand
-                    to ask for compensation for a whiplash injury. We are here to
-                    accurately identify your lost wages.
+                    to ask for compensation for a whiplash injury. We are here
+                    to accurately identify your lost wages.
                   </p>
                 </div>
               </div>
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
-                  <label className="mr-2 lbl" htmlFor="dateOfAccident">
+                  <label className="mr-2 lbl" htmlFor="accidentDate">
                     Date of Accident
                   </label>
                   <DatePicker
-                    selected={values.dateOfAccident}
+                    selected={values.accidentDate}
                     autoFocus
                     dateFormat="MMMM d, yyyy"
                     className="form-control"
-                    name="dateOfAccident"
-                    onChange={(date) => setFieldValue("dateOfAccident", date)}
+                    name="accidentDate"
+                    onChange={(date) => setFieldValue("accidentDate", date)}
                   />
                 </div>
                 <div className="form-group ml-2 col-sm-3">
-                  <label className="mr-2 lbl" htmlFor="dateRehabIsFinished">
+                  <label className="mr-2 lbl" htmlFor="rehabEndDate">
                     Date Rehab is Finished
                   </label>
                   <DatePicker
-                    selected={values.dateRehabIsFinished}
+                    selected={values.rehabEndDate}
                     dateFormat="MMMM d, yyyy"
                     className="form-control"
                     name="startDate"
-                    onChange={(date) =>
-                      setFieldValue("dateRehabIsFinished", date)
-                    }
+                    onChange={(date) => setFieldValue("rehabEndDate", date)}
                   />
                 </div>
               </div>
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
-                  <label htmlFor="numOfVisitsToRehab">
+                  <label htmlFor="visitsToRehab">
                     Number of Visits to Physical Therapy
                   </label>
                   <Field
                     type="number"
                     className="form-control"
-                    name="numOfVisitsToRehab"
-                    value={values.numOfVisitsToRehab}
+                    name="visitsToRehab"
+                    value={values.visitsToRehab}
                   />
                 </div>
                 <div className="form-group ml-2 col-sm-3">
@@ -120,73 +118,73 @@ class Calculator extends React.Component {
               </div>
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
-                  <label htmlFor="timeDrivingtoRehabPerAVisitRndTrip">
+                  <label htmlFor="rehabTravelTime">
                     Total Time Going to PT/Visit in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
                     className="form-control"
-                    name="timeDrivingtoRehabPerAVisitRndTrip"
-                    value={values.timeDrivingtoRehabPerAVisitRndTrip}
+                    name="rehabTravelTime"
+                    value={values.rehabTravelTime}
                   />
                 </div>
                 <div className="form-group ml-2 col-sm-3">
-                  <label htmlFor="timeDoingRehabPerADay">
+                  <label htmlFor="rehabTimePerDay">
                     Time Doing PT at Home/Day in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
                     className="form-control"
-                    name="timeDoingRehabPerADay"
-                    value={values.timeDoingRehabPerADay}
+                    name="rehabTimePerDay"
+                    value={values.rehabTimePerDay}
                   />
                 </div>
               </div>
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
-                  <label htmlFor="timeWithAtty">
+                  <label htmlFor="attorneyTime">
                     Time with Attorney in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
                     className="form-control"
-                    name="timeWithAtty"
-                    value={values.timeWithAtty}
+                    name="attorneyTime"
+                    value={values.attorneyTime}
                   />
                 </div>
                 <div className="form-group ml-2 col-sm-3">
-                  <label htmlFor="timeAtAccident">
+                  <label htmlFor="accidentTime">
                     Time at Accident in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
                     className="form-control"
-                    name="timeAtAccident"
-                    value={values.timeAtAccident}
+                    name="accidentTime"
+                    value={values.accidentTime}
                   />
                 </div>
               </div>
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
-                  <label htmlFor="timeRentingACar">
+                  <label htmlFor="carRentalTime">
                     Time Renting a Car in Hours<sup>*</sup>
                   </label>
                   <Field
                     type="number"
                     className="form-control"
-                    name="timeRentingACar"
-                    value={values.timeRentingACar}
+                    name="carRentalTime"
+                    value={values.carRentalTime}
                   />
                 </div>
                 <div className="form-group ml-2 col-sm-3">
-                  <label htmlFor="hourlyWageForOccupation">
+                  <label htmlFor="hourlyWage">
                     Hourly Income for Occupation<sup>*</sup>
                   </label>
                   <Field
                     type="number"
                     className="form-control"
-                    name="hourlyWageForOccupation"
-                    value={values.hourlyWageForOccupation}
+                    name="hourlyWage"
+                    value={values.hourlyWage}
                   />
                 </div>
               </div>
@@ -209,19 +207,16 @@ class Calculator extends React.Component {
                       numberFormat(
                         (1 + (79 - values.age) / 79) *
                           (2 *
-                            values.hourlyWageForOccupation *
-                            (Number(values.timeAtAccident) +
-                              Number(values.timeRentingACar) +
-                              Number(values.timeWithAtty) +
-                              (((values.dateRehabIsFinished -
-                                values.dateOfAccident) /
+                            values.hourlyWage *
+                            (Number(values.accidentTime) +
+                              Number(values.carRentalTime) +
+                              Number(values.attorneyTime) +
+                              (((values.rehabEndDate - values.accidentDate) /
                                 86400000) *
-                                Number(values.timeDoingRehabPerADay) +
-                                (Number(
-                                  values.timeDrivingtoRehabPerAVisitRndTrip
-                                ) +
+                                Number(values.rehabTimePerDay) +
+                                (Number(values.rehabTravelTime) +
                                   Number(values.timeAtRehabInHours)) *
-                                  Number(values.numOfVisitsToRehab))))
+                                  Number(values.visitsToRehab))))
                       )
                       //do a multipler of the average age of death in the us in 2020 * 2 for double entry of lost opportunites
                     }

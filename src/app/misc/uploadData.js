@@ -13,9 +13,9 @@ export default function uploadData() {
       let id = uuidv4();
       let pubData = {
         id: id,
-        zipcodeofaccident: val.zipcodeofaccident,
-        settlementamt: val.settlementamt,
-        numofvisitstorehab: val.numofvisitstorehab,
+        zipCodeOfAccident: val.zipCodeOfAccident,
+        settlementAmt: val.settlementAmt,
+        visitsToRehab: val.visitsToRehab,
         notes: val.notes,
       };
 
