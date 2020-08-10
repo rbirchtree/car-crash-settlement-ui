@@ -43,14 +43,12 @@ const Accidents = () => {
   }, []);
 
   function clickView(id) {
-    let accident = privData[id];
-
     if (user) {
       setShow(!show);
       if (show) {
         setAccident({});
       } else {
-        setAccident(accident);
+        setAccident(privData[id]);
       }
     } else {
       setOpen(true);
