@@ -17,6 +17,7 @@ const getPublicData = () => {
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
+      return error;
     });
 };
 
@@ -36,6 +37,7 @@ const getPrivateData = () => {
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
+      return error;
     });
 };
 
@@ -69,10 +71,11 @@ const addData = (data, userId) => {
     .then(function () {
       let privData = { ...data };
       privData.id = userId;
-      dataRef.doc(`${userId}/data/private`).set(privData);
+      return dataRef.doc(`${userId}/data/private`).set(privData);
     })
     .catch(function (error) {
       console.error("Error writing document: ", error);
+      return;
     });
 };
 
