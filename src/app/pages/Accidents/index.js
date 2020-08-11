@@ -16,8 +16,8 @@ const Accidents = () => {
 
   const [hasError, setErrors] = useState(false);
   const [accident, setAccident] = useState({});
-  const [accidents, setAccidents] = useState([]);
-  const [privData, setPrivData] = useState([]);
+  const [accidents, setAccidents] = useState({});
+  const [privData, setPrivData] = useState({});
   const [filter, setFilter] = useState(false);
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
