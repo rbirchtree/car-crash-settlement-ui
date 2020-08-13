@@ -72,7 +72,7 @@ function App() {
             <></>
           )}
         </h3>
-        <div className="container clear-top">
+        <div style={{ minHeight: "80vh" }} className="container clear-top">
           <Switch>
             <ProtectedRoute exact path="/about" component={About} />
             <Route exact path="/faq" component={FAQ} />

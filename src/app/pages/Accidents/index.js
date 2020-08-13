@@ -10,14 +10,15 @@ import DB from "dbFunctions/directConnect/accidentData";
 import ModalComp from "app/components/Modal";
 
 import "scss/Tables.scss";
+import axios from "axios";
 
 const Accidents = () => {
   const user = useSelector((state) => state.userReducer.user);
 
   const [hasError, setErrors] = useState(false);
   const [accident, setAccident] = useState({});
-  const [accidents, setAccidents] = useState({});
-  const [privData, setPrivData] = useState({});
+  const [accidents, setAccidents] = useState([]);
+  const [privData, setPrivData] = useState([]);
   const [filter, setFilter] = useState(false);
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
@@ -32,13 +33,25 @@ const Accidents = () => {
     // }
     // fetchData();
 
+    const URL =
+      "https://4w7wfv7kr2.execute-api.us-east-2.amazonaws.com/dev/accidents";
+
     (async function IIFE() {
-      const pubData = await DB.getPublicData();
-      setAccidents(pubData);
-      if (user) {
-        const privData = await DB.getPrivateData();
-        setPrivData(privData);
-      }
+      axios({
+        method: "get",
+        url: URL,
+      }).then(function (response) {
+        let data = response.data;
+        setPrivData(data);
+        setAccidents(data);
+      });
+
+      // const pubData = await DB.getPublicData();
+      // setAccidents(pubData);
+      // if (user) {
+      //   const privData = await DB.getPrivateData();
+      //   setPrivData(privData);
+      // }
     })();
   }, []);
 
@@ -57,26 +70,19 @@ const Accidents = () => {
   }
 
   function clickSort(val) {
-    const sortable = [];
-    for (let key in accidents) {
-      sortable.push([key, accidents[key][val]]);
-    }
+    let sorted;
 
-    if (typeof sortable[0][1] === "string") {
-      sortable.sort((a, b) =>
-        a[1].toUpperCase().localeCompare(b[1].toUpperCase())
+    if (typeof accidents[0][1] === "string") {
+      sorted = accidents.sort((a, b) =>
+        a[val].toUpperCase().localeCompare(b[val].toUpperCase())
       );
     } else {
-      sortable.sort((a, b) => a[1] - b[1]);
+      sorted = accidents.sort((a, b) => a[val] - b[val]);
     }
 
-    if (!filter) sortable.reverse();
+    if (!filter) sorted.reverse();
 
-    const objSorted = {};
-    sortable.forEach((item) => {
-      objSorted[item[0]] = accidents[item[0]];
-    });
-    setAccidents(objSorted);
+    setAccidents(sorted);
     setFilter(!filter);
   }
 
@@ -89,11 +95,9 @@ const Accidents = () => {
   };
 
   const TableBody = () => {
-    let keys = Object.keys(accidents);
-    return keys.map((key, index) => {
-      let accident = accidents[key];
+    return accidents.map((accident) => {
       return (
-        <tr key={index}>
+        <tr key={accident.id}>
           <td>{accident.zipCodeOfAccident}</td>
           <td>{numberFormat(accident.settlementAmt)}</td>
           <td>{accident.visitsToRehab}</td>
