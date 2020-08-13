@@ -2,7 +2,7 @@ const AWS = require("aws-sdk");
 var ddb = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
 
 exports.handler = async (event) => {
-  let { id } = event;
+  let { id } = event.pathParameters;
   let responseBody = "";
   let statusCode = 0;
 

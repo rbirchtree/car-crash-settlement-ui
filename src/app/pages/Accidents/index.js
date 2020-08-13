@@ -72,15 +72,17 @@ const Accidents = () => {
   function clickSort(val) {
     let sorted;
 
-    if (typeof accidents[0][1] === "string") {
-      sorted = accidents.sort((a, b) =>
-        a[val].toUpperCase().localeCompare(b[val].toUpperCase())
-      );
+    if (typeof accidents[0][val] === "string") {
+      sorted = accidents.sort((a, b) => {
+        if (!filter) [b, a] = [a, b];
+        return a[val].toUpperCase().localeCompare(b[val].toUpperCase());
+      });
     } else {
-      sorted = accidents.sort((a, b) => a[val] - b[val]);
+      sorted = accidents.sort((a, b) => {
+        if (!filter) [b, a] = [a, b];
+        return a[val] - b[val];
+      });
     }
-
-    if (!filter) sorted.reverse();
 
     setAccidents(sorted);
     setFilter(!filter);

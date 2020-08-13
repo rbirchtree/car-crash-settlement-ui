@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "accidentDate": "2014-02-01T00:00:00.000Z",
     "visitsToRehab": 60,
     "timeAtRehabinhours": 1,
@@ -19,7 +19,7 @@
     "notes": "Victim was stopped at redlight and took full impact from behind"
   },
   {
-    "id": 2,
+    "id": "2",
     "accidentDate": "2018-12-18T00:00:00.000Z",
     "visitsToRehab": 16,
     "timeAtRehabinhours": 1,
@@ -38,7 +38,7 @@
     "notes": "She was hit by a truck turning left"
   },
   {
-    "id": 3,
+    "id": "3",
     "accidentDate": "2018-04-14T00:00:00.000Z",
     "visitsToRehab": 16,
     "timeAtRehabinhours": 1,
@@ -57,7 +57,7 @@
     "notes": "He was hit by a van while parked"
   },
   {
-    "id": 4,
+    "id": "4",
     "accidentDate": "2019-04-21T00:00:00.000Z",
     "visitsToRehab": 32,
     "timeAtRehabinhours": 2,
@@ -76,7 +76,7 @@
     "notes": "He was hit by a truck while driving"
   },
   {
-    "id": 5,
+    "id": "5",
     "accidentDate": "2018-09-24T00:00:00.000Z",
     "visitsToRehab": 34,
     "timeAtRehabinhours": 2,
@@ -95,7 +95,7 @@
     "notes": "He was a passenger hit by a truck"
   },
   {
-    "id": 6,
+    "id": "6",
     "accidentDate": "2019-01-23T00:00:00.000Z",
     "visitsToRehab": 12,
     "timeAtRehabinhours": 2,
@@ -114,7 +114,7 @@
     "notes": "She was a passenger hit by a motorcycle"
   },
   {
-    "id": 7,
+    "id": "7",
     "accidentDate": "2017-05-14T00:00:00.000Z",
     "visitsToRehab": 5,
     "timeAtRehabinhours": 8,
