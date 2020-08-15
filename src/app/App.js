@@ -10,6 +10,7 @@ import Calculator from "app/components/Calculator";
 import Lost from "app/pages/Lost";
 import Tutorial from "app/pages/Tutorial";
 import Accidents from "app/pages/Accidents";
+import AccidentDetails from "app/pages/AccidentDetails";
 import SubmitClaim from "app/pages/SubmitClaim";
 
 import uploadData from "app/misc/uploadData";
@@ -77,6 +78,7 @@ function App() {
             <ProtectedRoute exact path="/about" component={About} />
             <Route exact path="/faq" component={FAQ} />
             <Route exact path="/data" component={Accidents} />
+            <Route exact path="/accidents/:id" component={AccidentDetails} />
             <ProtectedRoute exact path="/data/:id" component={Accidents} />
             {/* <Route exact path="/data/:id" render={(props) => (
                         <Accident {...props}/>)}/>

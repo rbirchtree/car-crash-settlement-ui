@@ -4,8 +4,9 @@ const documentClient = new AWS.DynamoDB.DocumentClient({
 });
 
 exports.handler = async (event) => {
+  let { id } = event.pathParameters;
+
   const {
-    id,
     accidentDate,
     visitsToRehab,
     timeAtRehabinhours,
@@ -22,7 +23,7 @@ exports.handler = async (event) => {
     age,
     settlementAmt,
     notes,
-  } = event;
+  } = JSON.parse(event.body);
 
   let responseBody = "";
   let statusCode = 0;
@@ -58,7 +59,7 @@ exports.handler = async (event) => {
     responseBody = JSON.stringify(data);
     statusCode = 201;
   } catch (err) {
-    responseBody = "Unable to put product: ${err}";
+    responseBody = `Unable to put item: ${err}`;
     statusCode = 403;
   }
 

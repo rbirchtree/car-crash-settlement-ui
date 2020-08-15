@@ -1,5 +1,5 @@
 const AWS = require("aws-sdk");
-var ddb = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
+var documentClient = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async (event) => {
   let { id } = event.pathParameters;
@@ -9,12 +9,12 @@ exports.handler = async (event) => {
   const params = {
     TableName: "Accidents",
     Key: {
-      id: { S: id },
+      id: id,
     },
   };
 
   try {
-    const data = await ddb.getItem(params).promise();
+    const data = await documentClient.get(params).promise();
     responseBody = JSON.stringify(data);
     statusCode = 201;
   } catch (err) {

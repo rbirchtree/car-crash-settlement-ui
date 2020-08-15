@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import UploadClaimBTN from "./Components/UploadClaimBTN";
@@ -8,12 +9,13 @@ import { Button } from "reactstrap";
 import DB from "dbFunctions/directConnect/accidentData";
 
 import ModalComp from "app/components/Modal";
+import { lambdaAPIurl as URL } from "config/aws.js";
 
-import "scss/Tables.scss";
 import axios from "axios";
 
 const Accidents = () => {
   const user = useSelector((state) => state.userReducer.user);
+  let history = useHistory();
 
   const [hasError, setErrors] = useState(false);
   const [accident, setAccident] = useState({});
@@ -33,14 +35,14 @@ const Accidents = () => {
     // }
     // fetchData();
 
-    const URL =
-      "https://4w7wfv7kr2.execute-api.us-east-2.amazonaws.com/dev/accidents";
+    const getAccidentsEndpoint = `${URL}/accidents`;
 
     (async function IIFE() {
       axios({
         method: "get",
-        url: URL,
+        url: getAccidentsEndpoint,
       }).then(function (response) {
+        console.log("response", response);
         let data = response.data;
         setPrivData(data);
         setAccidents(data);
@@ -57,12 +59,7 @@ const Accidents = () => {
 
   function clickView(id) {
     if (user) {
-      setShow(!show);
-      if (show) {
-        setAccident({});
-      } else {
-        setAccident(privData[id]);
-      }
+      history.push(`accidents/${id}`);
     } else {
       setOpen(true);
       console.log("you must be logged in to see this");
@@ -136,51 +133,47 @@ const Accidents = () => {
     );
   };
 
-  if (show) {
-    return <Accident show={show} setShow={setShow} val={accident} />;
-  } else {
-    return (
-      <>
-        <ModalComp
-          open={open}
-          handleClose={() => {
-            setOpen(false);
-          }}
-          children={ModalBody()}
-        />
-        {/* if opereator to return accident component and a callback */}
-        <div style={{ textAlign: "center" }}>
-          <h1>Car Crash Data</h1>
+  return (
+    <>
+      <ModalComp
+        open={open}
+        handleClose={() => {
+          setOpen(false);
+        }}
+        children={ModalBody()}
+      />
+      {/* if opereator to return accident component and a callback */}
+      <div style={{ textAlign: "center" }}>
+        <h1>Car Crash Data</h1>
 
-          {user ? (
-            <>
-              {accidents[user.uid] ? (
-                <UploadClaimBTN text="Edit Claim Data" />
-              ) : (
-                <UploadClaimBTN type="primary" text="Upload Claim Data" />
-              )}
-            </>
-          ) : (
-            <></>
-          )}
+        {user ? (
+          <>
+            {accidents[user.uid] ? (
+              <UploadClaimBTN text="Edit Claim Data" />
+            ) : (
+              <UploadClaimBTN type="primary" text="Upload Claim Data" />
+            )}
+          </>
+        ) : (
+          <></>
+        )}
 
-          <div style={{ overflow: "auto" }}>
-            <table className="tablesView">
-              <thead>
-                <tr>
-                  {HeaderItem("zipCodeOfAccident", "ZIP Code")}
-                  {HeaderItem("settlementAmt", "Settlement")}
-                  {HeaderItem("visitsToRehab", "Visits to Rehab")}
-                  {HeaderItem("notes", "Notes")}
-                  <th>Details</th>
-                </tr>
-              </thead>
-              <tbody className="text-center">{TableBody()}</tbody>
-            </table>
-          </div>
+        <div style={{ overflow: "auto" }}>
+          <table className="tablesView">
+            <thead>
+              <tr>
+                {HeaderItem("zipCodeOfAccident", "ZIP Code")}
+                {HeaderItem("settlementAmt", "Settlement")}
+                {HeaderItem("visitsToRehab", "Visits to Rehab")}
+                {HeaderItem("notes", "Notes")}
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody className="text-center">{TableBody()}</tbody>
+          </table>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 };
 export default connect()(Accidents);
