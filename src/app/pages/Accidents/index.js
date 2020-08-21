@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { numberFormat } from "../../../utils/numCurrency";
 import Accident from "./Components/Accident";
 import UploadClaimBTN from "./Components/UploadClaimBTN";
@@ -8,11 +9,13 @@ import { Button } from "reactstrap";
 import DB from "dbFunctions/directConnect/accidentData";
 
 import ModalComp from "app/components/Modal";
+import { lambdaAPIurl as URL } from "config/aws.js";
 
-import "scss/Tables.scss";
+import axios from "axios";
 
 const Accidents = () => {
   const user = useSelector((state) => state.userReducer.user);
+  let history = useHistory();
 
   const [hasError, setErrors] = useState(false);
   const [accident, setAccident] = useState({});
@@ -32,27 +35,31 @@ const Accidents = () => {
     // }
     // fetchData();
 
+    const getAccidentsEndpoint = `${URL}/accidents`;
+
     (async function IIFE() {
-      const privData = await DB.getPrivateData();
-      const pubData = await DB.getPublicData();
-      console.log("pubData", pubData);
-      console.log("private Data", privData);
-      console.log("privData", privData);
-      setPrivData(privData);
-      setAccidents(pubData);
+      axios({
+        method: "get",
+        url: getAccidentsEndpoint,
+      }).then(function (response) {
+        console.log("response", response);
+        let data = response.data;
+        setPrivData(data);
+        setAccidents(data);
+      });
+
+      // const pubData = await DB.getPublicData();
+      // setAccidents(pubData);
+      // if (user) {
+      //   const privData = await DB.getPrivateData();
+      //   setPrivData(privData);
+      // }
     })();
   }, []);
 
   function clickView(id) {
-    let accident = privData[id];
-
     if (user) {
-      setShow(!show);
-      if (show) {
-        setAccident({});
-      } else {
-        setAccident(accident);
-      }
+      history.push(`accidents/${id}`);
     } else {
       setOpen(true);
       console.log("you must be logged in to see this");
@@ -60,26 +67,21 @@ const Accidents = () => {
   }
 
   function clickSort(val) {
-    const sortable = [];
-    for (let key in accidents) {
-      sortable.push([key, accidents[key][val]]);
-    }
+    let sorted;
 
-    if (typeof sortable[0][1] === "string") {
-      sortable.sort((a, b) =>
-        a[1].toUpperCase().localeCompare(b[1].toUpperCase())
-      );
+    if (typeof accidents[0][val] === "string") {
+      sorted = accidents.sort((a, b) => {
+        if (!filter) [b, a] = [a, b];
+        return a[val].toUpperCase().localeCompare(b[val].toUpperCase());
+      });
     } else {
-      sortable.sort((a, b) => a[1] - b[1]);
+      sorted = accidents.sort((a, b) => {
+        if (!filter) [b, a] = [a, b];
+        return a[val] - b[val];
+      });
     }
 
-    if (!filter) sortable.reverse();
-
-    const objSorted = {};
-    sortable.forEach((item) => {
-      objSorted[item[0]] = accidents[item[0]];
-    });
-    setAccidents(objSorted);
+    setAccidents(sorted);
     setFilter(!filter);
   }
 
@@ -92,11 +94,9 @@ const Accidents = () => {
   };
 
   const TableBody = () => {
-    let keys = Object.keys(accidents);
-    return keys.map((key, index) => {
-      let accident = accidents[key];
+    return accidents.map((accident) => {
       return (
-        <tr key={index}>
+        <tr key={accident.id}>
           <td>{accident.zipCodeOfAccident}</td>
           <td>{numberFormat(accident.settlementAmt)}</td>
           <td>{accident.visitsToRehab}</td>
@@ -133,51 +133,47 @@ const Accidents = () => {
     );
   };
 
-  if (show) {
-    return <Accident show={show} setShow={setShow} val={accident} />;
-  } else {
-    return (
-      <>
-        <ModalComp
-          open={open}
-          handleClose={() => {
-            setOpen(false);
-          }}
-          children={ModalBody()}
-        />
-        {/* if opereator to return accident component and a callback */}
-        <div style={{ textAlign: "center" }}>
-          <h1>Car Crash Data</h1>
+  return (
+    <>
+      <ModalComp
+        open={open}
+        handleClose={() => {
+          setOpen(false);
+        }}
+        children={ModalBody()}
+      />
+      {/* if opereator to return accident component and a callback */}
+      <div style={{ textAlign: "center" }}>
+        <h1>Car Crash Data</h1>
 
-          {user ? (
-            <>
-              {accidents[user.uid] ? (
-                <UploadClaimBTN text="Edit Claim Data" />
-              ) : (
-                <UploadClaimBTN type="primary" text="Upload Claim Data" />
-              )}
-            </>
-          ) : (
-            <></>
-          )}
+        {user ? (
+          <>
+            {accidents[user.uid] ? (
+              <UploadClaimBTN text="Edit Claim Data" />
+            ) : (
+              <UploadClaimBTN type="primary" text="Upload Claim Data" />
+            )}
+          </>
+        ) : (
+          <></>
+        )}
 
-          <div style={{ overflow: "auto" }}>
-            <table className="tablesView">
-              <thead>
-                <tr>
-                  {HeaderItem("zipCodeOfAccident", "ZIP Code")}
-                  {HeaderItem("settlementAmt", "Settlement")}
-                  {HeaderItem("visitsToRehab", "Visits to Rehab")}
-                  {HeaderItem("notes", "Notes")}
-                  <th>Details</th>
-                </tr>
-              </thead>
-              <tbody className="text-center">{TableBody()}</tbody>
-            </table>
-          </div>
+        <div style={{ overflow: "auto" }}>
+          <table className="tablesView">
+            <thead>
+              <tr>
+                {HeaderItem("zipCodeOfAccident", "ZIP Code")}
+                {HeaderItem("settlementAmt", "Settlement")}
+                {HeaderItem("visitsToRehab", "Visits to Rehab")}
+                {HeaderItem("notes", "Notes")}
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody className="text-center">{TableBody()}</tbody>
+          </table>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 };
 export default connect()(Accidents);

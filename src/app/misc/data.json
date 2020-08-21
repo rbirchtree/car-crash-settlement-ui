@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "accidentDate": "2014-02-01T00:00:00.000Z",
     "visitsToRehab": 60,
     "timeAtRehabinhours": 1,
@@ -38,6 +38,7 @@
     "notes": "She was hit by a truck turning left"
   },
   {
+    "id": "3",
     "id": 3,
     "accidentDate": "2018-04-14T00:00:00.000Z",
     "visitsToRehab": 16,
@@ -95,7 +96,7 @@
     "notes": "He was a passenger hit by a truck"
   },
   {
-    "id": 6,
+    "id": "6",
     "accidentDate": "2019-01-23T00:00:00.000Z",
     "visitsToRehab": 12,
     "timeAtRehabinhours": 2,

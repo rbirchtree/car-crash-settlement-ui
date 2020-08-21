@@ -7,12 +7,15 @@ import DatePicker from "react-datepicker";
 import { numberFormat } from "utils/numCurrency";
 import "react-datepicker/dist/react-datepicker.css";
 import Helmet from "react-helmet";
+import axios from "axios";
+import { lambdaAPIurl as URL } from "config/aws.js";
 
 import DB from "dbFunctions/directConnect/accidentData";
 
 const SubmitClaim = ({ data }) => {
   const history = useHistory();
   const user = useSelector((state) => state.userReducer.user);
+  const [url, setUrl] = useState(null);
   const [initVals, setInitVals] = useState({
     email: "john.doe@gmail.com",
     firstName: "John",
@@ -36,13 +39,22 @@ const SubmitClaim = ({ data }) => {
   useEffect(() => {
     (async function IIFE() {
       if (user) {
-        let data = await DB.getDataById(user.uid);
-        if (data) {
-          console.log("data", data);
-          data.accidentDate = data.accidentDate.toDate();
-          data.rehabEndDate = data.rehabEndDate.toDate();
-          setInitVals(data);
-        }
+        //todo: need to change user.uid to AWS cognito id
+        const accidentEndpoint = `${URL}/accidents/${user.uid}`;
+        setUrl(accidentEndpoint);
+        axios({
+          method: "get",
+          url: accidentEndpoint,
+        }).then(function (response) {
+          console.log("response", response.data);
+          let data = response.data.Item;
+          if (data) {
+            console.log("data", data);
+            data.accidentDate = data.accidentDate.toDate();
+            data.rehabEndDate = data.rehabEndDate.toDate();
+            setInitVals(data);
+          }
+        });
       }
     })();
   }, [user]);
@@ -68,7 +80,14 @@ const SubmitClaim = ({ data }) => {
         initialValues={initVals}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
-          DB.addData(values, user.uid);
+
+          axios
+            .post(url, initVals)
+            .then((res) => console.log(res))
+            .catch((err) => console.log("err", err));
+
+          // DB.addData(values, user.uid);
+
           setSubmitting(false);
           history.push("data");
         }}
@@ -77,12 +96,7 @@ const SubmitClaim = ({ data }) => {
           <Form>
             <div className="form row justify-content-center">
               <div className="text-center form-group ml-2 col-sm-7">
-                <h1>Whiplash Estimate</h1>
-                <p>
-                  This is meant to provide an estimate of a reasonable demand to
-                  ask for compensation for a whiplash injury. We are here to
-                  accurately identify your lost wages.
-                </p>
+                <h1>Submit Your Claim</h1>
               </div>
             </div>
             <div className="form row justify-content-center">
