@@ -6,7 +6,10 @@ export default function FAQ() {
     <div>
       <Helmet>
         <title>FAQ</title>
-        <meta name="description" content="FAQ frequently asked questions" />
+        <meta
+          name="description"
+          content="What to do when you are in a car accident or crash udemy faq"
+        />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://abettersettlement.com" />
@@ -16,8 +19,25 @@ export default function FAQ() {
         />
       </Helmet>
       <h1>FAQ: Frequently Asked Questions</h1>
-
       <ul>
+        <li>
+          <p>
+            <b>Why does abettersettlement.com exist?</b>
+          </p>
+          <p>
+            We discovered that frequently car accident victims settle before
+            they are fully recovered from whiplash and delay their recovery for
+            a while because they never get the treatment due to insurance. We
+            created a course to help educate people on their rights, so they
+            don't settle too quickly. Get your treatment and move on with life
+            with our{" "}
+            <a href="https://www.udemy.com/course/representing-yourself-in-a-car-accident-whiplash-claim/?referralCode=00EDADA26CD7B328EA6B">
+              Udemy Course
+            </a>
+            ! It is full of good advice that the car insurance companies don't
+            want you to know!
+          </p>
+        </li>
         <li>
           <p>
             <b>
