@@ -11,7 +11,8 @@ import Lost from "app/pages/Lost";
 import Tutorial from "app/pages/Tutorial";
 import Accidents from "app/pages/Accidents";
 import AccidentDetails from "app/pages/AccidentDetails";
-import SubmitClaim from "app/pages/SubmitClaim";
+// import SubmitClaim from "app/pages/SubmitClaim";
+import SubmitClaim from "app/pages/SubmitClaim/form";
 
 import uploadData from "app/misc/uploadData";
 

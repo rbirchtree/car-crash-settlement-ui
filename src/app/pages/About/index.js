@@ -6,8 +6,8 @@ export default function AboutPage() {
   return (
     <div>
       <Helmet>
-        <title>About</title>
-        <meta name="description" content="About Rob Birch" />
+        <title>About Rob Birch</title>
+        <meta name="description" content="About Rob Birch totaled car accident compensation for settlement" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://abettersettlement.com" />

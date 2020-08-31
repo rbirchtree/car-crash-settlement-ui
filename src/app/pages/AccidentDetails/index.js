@@ -5,6 +5,7 @@ import Moment from "react-moment";
 import { numberFormat } from "utils/numCurrency";
 import { lambdaAPIurl as URL } from "config/aws.js";
 import axios from "axios";
+import Helmet from "react-helmet";
 
 export default function AccidentDetails(props) {
   const {
@@ -61,6 +62,20 @@ export default function AccidentDetails(props) {
 
   return (
     <Grid container direction="row" justify="center">
+      <Helmet>
+        <title>Accident Settlements</title>
+        <meta
+          name="description"
+          content="What is the average settlement for a car crash accident?"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://abettersettlement.com" />
+        <meta
+          property="og:description"
+          content="What is the average settlement for a car crash accident?"
+        />
+      </Helmet>
       <div style={{ textAlign: "left" }}>
         <div>
           <h1>Accident Details</h1>

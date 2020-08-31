@@ -14,7 +14,7 @@ class Calculator extends React.Component {
           <title>A Better Settlement</title>
           <meta
             name="description"
-            content="Personal Injury Whiplash Settlement Calculator"
+            content="Personal Injury Whiplash Calculator for A Better Settlement"
           />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />
@@ -60,7 +60,7 @@ class Calculator extends React.Component {
                   <h1>Whiplash Estimate</h1>
                   <p>
                     This is meant to provide an estimate of a reasonable demand
-                    to ask for compensation for a whiplash injury. We are here
+                    to ask for compensation for a whiplash injury using our <a href="https://www.udemy.com/course/representing-yourself-in-a-car-accident-whiplash-claim/?referralCode=00EDADA26CD7B328EA6B">course</a>. We are here
                     to accurately identify your lost wages.
                   </p>
                 </div>
@@ -143,7 +143,7 @@ class Calculator extends React.Component {
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="attorneyTime">
-                    Time with Attorney in Hours<sup>*</sup>
+                    Time with Attorney in Hours
                   </label>
                   <Field
                     type="number"
@@ -154,7 +154,7 @@ class Calculator extends React.Component {
                 </div>
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="accidentTime">
-                    Time at Accident in Hours<sup>*</sup>
+                    Time at Accident in Hours
                   </label>
                   <Field
                     type="number"
@@ -167,7 +167,7 @@ class Calculator extends React.Component {
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="carRentalTime">
-                    Time Renting a Car in Hours<sup>*</sup>
+                    Time Renting a Car in Hours
                   </label>
                   <Field
                     type="number"
@@ -178,7 +178,7 @@ class Calculator extends React.Component {
                 </div>
                 <div className="form-group ml-2 col-sm-3">
                   <label htmlFor="hourlyWage">
-                    Hourly Income for Occupation<sup>*</sup>
+                    Hourly Income for Occupation
                   </label>
                   <Field
                     type="number"
@@ -226,8 +226,7 @@ class Calculator extends React.Component {
               <div className="form row justify-content-center">
                 <div className="form-group ml-2 col-sm-3 mb-2">
                   <sup>
-                    *PT means physical therapy and all time are in hours when
-                    asked in the questions.
+                    *PT means physical therapy
                   </sup>
                 </div>
               </div>

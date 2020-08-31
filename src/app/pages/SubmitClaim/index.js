@@ -50,8 +50,9 @@ const SubmitClaim = ({ data }) => {
           let data = response.data.Item;
           if (data) {
             console.log("data", data);
-            data.accidentDate = data.accidentDate.toDate();
-            data.rehabEndDate = data.rehabEndDate.toDate();
+            // console.log("data.accidentDate", data.accidentDate);
+            data.accidentDate = new Date(data.accidentDate);
+            data.rehabEndDate = new Date(data.rehabEndDate);
             setInitVals(data);
           }
         });
