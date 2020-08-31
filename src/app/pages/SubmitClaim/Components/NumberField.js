@@ -12,7 +12,14 @@ const styles = {
   },
 };
 
-export default function NumberField({ label, unit, name, value, onChange }) {
+export default function NumberField({
+  label,
+  unit,
+  name,
+  value,
+  onChange,
+  error,
+}) {
   return (
     <Grid item xs={12} sm={6} style={styles.Grid}>
       <span>{label}</span>
@@ -22,6 +29,8 @@ export default function NumberField({ label, unit, name, value, onChange }) {
         style={styles.TextField}
         value={value}
         onChange={onChange}
+        helperText={error}
+        error={error}
       />
       <span>{unit}</span>
     </Grid>

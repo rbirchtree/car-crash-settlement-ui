@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import { numberFormat } from "utils/numCurrency";
 
 import DateFnsUtils from "@date-io/date-fns";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import FormControl from "@material-ui/core/FormControl";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Helmet from "react-helmet";
@@ -29,9 +26,7 @@ const styles = {
   TextField: {
     width: "50px",
   },
-  TextFieldInput: {
-    textAlign: "center",
-  },
+
   Button: {
     color: "white",
     backgroundColor: "teal",
@@ -45,11 +40,7 @@ const SubmitClaim = ({ data }) => {
   const history = useHistory();
   const user = useSelector((state) => state.userReducer.user);
   const [url, setUrl] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const [submitting, setSubmitting] = useState(false);
 
   const [values, setValues] = useState({
     email: "john.doe@gmail.com",
@@ -71,6 +62,14 @@ const SubmitClaim = ({ data }) => {
     notes: "",
   });
 
+  //put required fields in object below
+  const [errors, setErrors] = useState({
+    accidentDate: null,
+    visitsToRehab: null,
+    timeAtRehabInHours: null,
+    hourlyWage: null,
+  });
+
   useEffect(() => {
     (async function IIFE() {
       if (user) {
@@ -80,19 +79,30 @@ const SubmitClaim = ({ data }) => {
         axios({
           method: "get",
           url: accidentEndpoint,
-        }).then(function (response) {
-          console.log("response", response.data);
-          let data = response.data.Item;
-          if (data) {
-            console.log("data", data);
-            data.accidentDate = new Date(data.accidentDate);
-            data.rehabEndDate = new Date(data.rehabEndDate);
-            setValues(data);
-          }
-        });
+        })
+          .then(function (response) {
+            console.log("response", response.data);
+            let data = response.data.Item;
+            if (data) {
+              console.log("data", data);
+              data.accidentDate = new Date(data.accidentDate);
+              data.rehabEndDate = new Date(data.rehabEndDate);
+              setValues(data);
+            }
+          })
+          .catch((err) => {
+            console.log("err", err);
+          });
       }
     })();
   }, [user]);
+
+  const handleDateChange = (name, date) => {
+    setValues({
+      ...values,
+      [name]: date,
+    });
+  };
 
   const handleTextChange = (e) => {
     let { name, value } = e.target;
@@ -115,14 +125,53 @@ const SubmitClaim = ({ data }) => {
     }
   };
 
-  const setSettlementAmt = (amt) => {
-    setValues({
-      ...values,
-      settlementAmt: amt,
-    });
+  const handleZipChange = (e) => {
+    let { name, value } = e.target;
+    let number = value.replace(/([^0-9]+)/gi, "");
+
+    if ((number > 0 && number.length < 6) || number.length == 0) {
+      let integer = parseInt(number, 10) || "";
+      setValues({
+        ...values,
+        [name]: integer,
+      });
+    }
   };
 
-  const onSubmit = () => {};
+  const validate = () => {
+    let errs = {};
+    let fields = Object.keys(errors);
+
+    fields.forEach((field) => {
+      console.log("field", field);
+      console.log("values[field]", values[field]);
+      if (values[field] == null || values[field] == "")
+        errs[field] = `Required Field`;
+    });
+
+    setErrors(errs);
+    return Object.keys(errs).length;
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (validate()) return;
+
+    setSubmitting(true);
+
+    axios
+      .post(url, values)
+      .then((res) => {
+        console.log(res);
+        setSubmitting(false);
+        history.push("/data");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setSubmitting(false);
+      });
+  };
 
   return (
     <div className="container">
@@ -141,10 +190,10 @@ const SubmitClaim = ({ data }) => {
         />
       </Helmet>
 
-      <form onSubmit={onSubmit} style={{ margin: "auto" }}>
-        <div style={{ textAlign: "center" }}>
-          <h1>Submit Your Claim</h1>
-        </div>
+      <div style={{ textAlign: "center" }}>
+        {values.id ? <h1>Edit Your Claim</h1> : <h1>Submit Your Claim</h1>}
+      </div>
+      <form onSubmit={onSubmit}>
         <Grid
           container
           justify="space-around"
@@ -158,13 +207,14 @@ const SubmitClaim = ({ data }) => {
                 label="Date of Accident"
                 format="MM/dd/yyyy"
                 value={values.accidentDate}
-                onChange={handleDateChange}
+                onChange={(event) => {
+                  handleDateChange("accidentDate", event);
+                }}
                 KeyboardButtonProps={{
                   "aria-label": "change date",
                 }}
               />
             </Grid>
-
             <Grid item xs={12} sm={6} style={styles.Grid}>
               <KeyboardDatePicker
                 margin="normal"
@@ -172,7 +222,9 @@ const SubmitClaim = ({ data }) => {
                 label="Rehab End Date"
                 format="MM/dd/yyyy"
                 value={values.rehabEndDate}
-                onChange={handleDateChange}
+                onChange={(event) => {
+                  handleDateChange("rehabEndDate", event);
+                }}
                 KeyboardButtonProps={{
                   "aria-label": "change date",
                 }}
@@ -181,18 +233,19 @@ const SubmitClaim = ({ data }) => {
           </MuiPickersUtilsProvider>
 
           <NumberField
-            label="Number of Visits to Physical Therapy: "
-            name="visitsToRehab"
-            value={values.visitsToRehab}
-            onChange={handleNumChange}
+            label="Zip Code of Accident: "
+            name="zipCodeOfAccident"
+            value={values.zipCodeOfAccident}
+            onChange={handleZipChange}
           />
 
           <NumberField
-            label="Time at Physical Therapy per Visit: "
-            name="timeAtRehabInHours"
-            value={values.timeAtRehabInHours}
+            label="Time at Accident: "
+            name="accidentTime"
+            value={values.accidentTime}
             onChange={handleNumChange}
             unit="hrs"
+            error={errors.accidentTime}
           />
 
           <NumberField
@@ -203,11 +256,37 @@ const SubmitClaim = ({ data }) => {
           />
 
           <NumberField
-            label="Car Rental Time: "
-            name="carRentalTime"
-            value={values.carRentalTime}
+            label="Number of Visits to Physical Therapy: "
+            name="visitsToRehab"
+            value={values.visitsToRehab}
             onChange={handleNumChange}
-            unit="hrs"
+          />
+
+          <NumberField
+            label="Time Traveling to Rehab: "
+            name="rehabTravelTime"
+            value={values.rehabTravelTime}
+            onChange={handleNumChange}
+            unit="hrs each visit"
+            error={errors.rehabTravelTime}
+          />
+
+          <NumberField
+            label="Time at Physical Therapy: "
+            name="timeAtRehabInHours"
+            value={values.timeAtRehabInHours}
+            onChange={handleNumChange}
+            unit="hrs each visit"
+            error={errors.timeAtRehabInHours}
+          />
+
+          <NumberField
+            label="Time during Physical Therapy at Home: "
+            name="rehabTimePerDay"
+            value={values.rehabTimePerDay}
+            onChange={handleNumChange}
+            unit="hrs/day"
+            error={errors.rehabTimePerDay}
           />
 
           <NumberField
@@ -219,39 +298,34 @@ const SubmitClaim = ({ data }) => {
           />
 
           <NumberField
-            label="Zip Code of Accident: "
-            name="zipCodeOfAccident"
-            value={values.zipCodeOfAccident}
+            label="Time with Attorney: "
+            name="attorneyTime"
+            value={values.attorneyTime}
             onChange={handleNumChange}
+            unit="hrs"
           />
 
-          <Grid item xs={12} sm={6} style={styles.Grid}>
-            <span>Hourly Income: </span>
-            <MoneyField
-              amt={values.hourlyWage}
-              setAmt={(amt) => {
-                setValues({
-                  ...values,
-                  hourlyWage: amt,
-                });
-              }}
-              fieldStyles={styles.TextField}
-            />
-          </Grid>
+          <MoneyField
+            label="Hourly Income: "
+            amt={values.hourlyWage}
+            setAmt={(amt) => {
+              setValues({
+                ...values,
+                hourlyWage: amt,
+              });
+            }}
+          />
 
-          <Grid item xs={12} sm={6} style={styles.Grid}>
-            <span>Settlement Amount: </span>
-            <MoneyField
-              amt={values.settlementAmt}
-              setAmt={(amt) => {
-                setValues({
-                  ...values,
-                  settlementAmt: amt,
-                });
-              }}
-              fieldStyles={styles.TextField}
-            />
-          </Grid>
+          <MoneyField
+            label="Settlement Amount: "
+            amt={values.settlementAmt}
+            setAmt={(amt) => {
+              setValues({
+                ...values,
+                settlementAmt: amt,
+              });
+            }}
+          />
         </Grid>
 
         <TextField
@@ -266,7 +340,13 @@ const SubmitClaim = ({ data }) => {
         />
         <div style={{ width: "100%", textAlign: "center" }}>
           <br />
-          <button style={styles.Button}>Submit</button>
+          {submitting ? (
+            <CircularProgress />
+          ) : (
+            <button style={styles.Button} onClick={onSubmit}>
+              Submit
+            </button>
+          )}
         </div>
       </form>
     </div>
