@@ -13,6 +13,7 @@ import Accidents from "app/pages/Accidents";
 import AccidentDetails from "app/pages/AccidentDetails";
 import SubmitClaim from "app/pages/SubmitClaim";
 
+
 import uploadData from "app/misc/uploadData";
 
 import FAQ from "./pages/FAQ";
