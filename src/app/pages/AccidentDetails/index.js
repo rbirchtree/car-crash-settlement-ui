@@ -16,6 +16,7 @@ export default function AccidentDetails(props) {
   const {
     match: { params },
   } = props;
+
   const [vals, setVals] = useState({
     accidentDate: null,
     accidentTime: null,
