@@ -6,6 +6,11 @@ import { numberFormat } from "utils/numCurrency";
 import { lambdaAPIurl as URL } from "config/aws.js";
 import axios from "axios";
 import Helmet from "react-helmet";
+import ReactGA from 'react-ga';
+
+const trackingId = "UA-176781019-1"; // Replace with your Google Analytics tracking ID
+ReactGA.initialize(trackingId);
+
 
 export default function AccidentDetails(props) {
   const {
@@ -52,7 +57,6 @@ export default function AccidentDetails(props) {
         method: "get",
         url: getAccidentEndpoint,
       }).then(function (response) {
-        //todo: cache protected data in redux store
         console.log("response", response.data);
         let item = response.data.Item;
         console.log("item", item);

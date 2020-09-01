@@ -11,8 +11,9 @@ import Lost from "app/pages/Lost";
 import Tutorial from "app/pages/Tutorial";
 import Accidents from "app/pages/Accidents";
 import AccidentDetails from "app/pages/AccidentDetails";
-// import SubmitClaim from "app/pages/SubmitClaim";
 import SubmitClaim from "app/pages/SubmitClaim/form";
+
+
 
 import uploadData from "app/misc/uploadData";
 
@@ -76,7 +77,7 @@ function App() {
         </h3>
         <div style={{ minHeight: "80vh" }} className="container clear-top">
           <Switch>
-            <ProtectedRoute exact path="/about" component={About} />
+            <Route exact path="/about" component={About} />
             <Route exact path="/faq" component={FAQ} />
             <Route exact path="/data" component={Accidents} />
             <Route exact path="/accidents/:id" component={AccidentDetails} />
