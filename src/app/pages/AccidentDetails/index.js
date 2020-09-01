@@ -11,6 +11,7 @@ export default function AccidentDetails(props) {
   const {
     match: { params },
   } = props;
+
   const [vals, setVals] = useState({
     accidentDate: null,
     accidentTime: null,
@@ -51,6 +52,7 @@ export default function AccidentDetails(props) {
         method: "get",
         url: getAccidentEndpoint,
       }).then(function (response) {
+        //todo: cache protected data in redux store
         console.log("response", response.data);
         let item = response.data.Item;
         console.log("item", item);

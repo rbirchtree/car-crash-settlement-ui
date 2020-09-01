@@ -11,19 +11,35 @@ import DB from "dbFunctions/directConnect/accidentData";
 import ModalComp from "app/components/Modal";
 import { lambdaAPIurl as URL } from "config/aws.js";
 
+import { setPubAccidents } from "redux/actions/accidentsActions.js";
+
 import axios from "axios";
 
-const Accidents = () => {
-  const user = useSelector((state) => state.userReducer.user);
-  let history = useHistory();
+const getAccidentsData = () => {
+  const getAccidentsEndpoint = `${URL}/accidents`;
+  return axios({
+    method: "get",
+    url: getAccidentsEndpoint,
+  })
+    .then(function (response) {
+      console.log("response", response);
+      let data = response.data;
+      return { data };
+    })
+    .catch((err) => {
+      console.log(err);
+      return { err };
+    });
+};
 
-  const [hasError, setErrors] = useState(false);
-  const [accident, setAccident] = useState({});
-  const [accidents, setAccidents] = useState([]);
-  const [privData, setPrivData] = useState([]);
+const Accidents = () => {
+  let history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
+  const accidents = useSelector((state) => state.accidentsReducer.pubData);
+
   const [filter, setFilter] = useState(false);
   const [open, setOpen] = useState(false);
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     // async function fetchData() {
@@ -35,18 +51,13 @@ const Accidents = () => {
     // }
     // fetchData();
 
-    const getAccidentsEndpoint = `${URL}/accidents`;
-
     (async function IIFE() {
-      axios({
-        method: "get",
-        url: getAccidentsEndpoint,
-      }).then(function (response) {
-        console.log("response", response);
-        let data = response.data;
-        setPrivData(data);
-        setAccidents(data);
-      });
+      if (!accidents.length) {
+        let res = await getAccidentsData();
+        if (res.data) {
+          dispatch(setPubAccidents(res.data));
+        }
+      }
 
       // const pubData = await DB.getPublicData();
       // setAccidents(pubData);
@@ -81,7 +92,7 @@ const Accidents = () => {
       });
     }
 
-    setAccidents(sorted);
+    dispatch(setPubAccidents(sorted)); //won't be able to update store if the data is not an array
     setFilter(!filter);
   }
 
