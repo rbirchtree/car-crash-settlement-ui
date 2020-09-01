@@ -23,7 +23,7 @@ export default class MyForm extends React.Component {
               <label>Email:</label>
             </div>
             <div>
-              <input type="email" name="email" />
+              <input aria-required="true" type="email" name="email" />
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@ export default class MyForm extends React.Component {
               <label>Message:</label>
             </div>
             <div>
-              <textarea type="text" name="message" />
+              <textarea aria-required="true" type="text" name="message" />
             </div>
         </div>
       </div>

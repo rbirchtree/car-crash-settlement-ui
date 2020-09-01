@@ -16,12 +16,12 @@ export default function AboutPage() {
 
       <h1>About: A Better Settlement</h1>
       <div className="row content">
-        <div className="col-sm">
+        <section className="col-sm">
           <p>
             <img
               className="mypic rounded-circle float-right"
               src={rob}
-              alt="Rob"
+              alt="Rob Birch"
             />
             Rob Birch is a software engineer who was involved in a rear-end
             collision. His car was totaled. Through an analytical approach, he
@@ -36,7 +36,7 @@ export default function AboutPage() {
           <div className="col-sm">
             <MyForm />
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
